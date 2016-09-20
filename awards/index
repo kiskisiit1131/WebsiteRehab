@@ -9,9 +9,9 @@
             <h1>Awards and Volunteer Experience</h1>
             <nav>
               <ul>
-                <li><a href="#home.html">Home</a></li>
-                <li><a href="#resume.html">Resume</a></li>
-                <li><a href="#awards.html">Awards and Volunteer Experience</a></li>
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="../resume/index.html">Resume</a></li>
+            <li><a href="../awards/index.html">Awards and Volunteer Experience</a></li>
               </ul>
             </nav>
           </header>
@@ -79,7 +79,7 @@
                   </figure>
             </section>
               <footer>
-                Copyright © Akvile Kiskis. All rights reserved.
+                <p>Copyright © Akvile Kiskis. All rights reserved.</p>
               </footer>
         </body>
  </html>
