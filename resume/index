@@ -14,14 +14,14 @@
         </ul>
         <nav>
           <ul>
-            <li><a href="#home.html">Home</a></li>
-            <li><a href="#resume.html">Resume</a></li>
-            <li><a href="#awards.html">Awards and Volunteer Experience</a></li>
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="../resume/index.html">Resume</a></li>
+            <li><a href="../awards/index.html">Awards and Volunteer Experience</a></li>
           </ul>
         </nav>
       </header>
       <section>
-        <h1>Summary</h1>
+        <h2>Summary</h2>
         <ul>
           <li>A skilled communicator; able to maintain cultural sensitivity, establish rapport with members of diverse groups, and promote team cohesiveness</li>
           <li>Motivated towards achieving set goals and deadlines in a timely manner</li>
@@ -32,7 +32,7 @@
         </ul>
       </section>
       <section>
-        <h1>Education</h1>
+        <h2>Education</h2>
         <h4>Illinois Institute of Technology - Chicago IL</h4>
         <ul style="list-style-type:none">
         <li>B.S., Information Technology and Management</li>
@@ -45,7 +45,7 @@
         </ul>
        </section>
         <section>
-          <h1>Experience</h1>
+          <h2>Experience</h2>
           <h4>Server - <i> iPic Theaters, Bolingbrook, IL |</i> January 2016 - Present</h4>
           <ul>
             <li>Deliver exceptional, friendly, and fast service</li>
@@ -94,9 +94,8 @@
           </ul>    
         </section>
           <footer>
-            Copyright © Akvile Kiskis. All rights reserved.
-           </footer>
+            <p>Copyright © Akvile Kiskis. All rights reserved.</p>
+          </footer>
     </body>
 
 </html>
-
