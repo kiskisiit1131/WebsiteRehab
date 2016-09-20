@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+   </head>
+    <body>
+      <header>
+        <h1>Home</h1> 
+        <nav>
+          <ul>
+            <li><a href="#home.html">Home</a></li>
+            <li><a href="#resume.html">Resume</a></li>
+            <li><a href="#awards.html">Awards and Volunteer Experience</a></li>
+          </ul>
+        </nav>
+      </header>
+      <section>
+        <h2>About Me</h2>
+          <figure>
+            <img src="pictures/akgrad.jpg" alt="AK Grad" style="width:300px;height:300px"/>
+          </figure>
+          <p>Currently, I am an undergrad student at Illinois Institute of Technology, and working towards my Bachelor's degree in Applied Science: Information Technology and Management. 
+          I am pursuing my Master's degree as well, although undecided on whether I want to specialize in Cyber Security or continue on with Information Technology and Management.</p>
+      </section>
+    </body>
+</html>
