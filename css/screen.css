@@ -6,8 +6,33 @@
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section{display:block}html{line-height:1}body{line-height:inherit}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
 /* stylelint-enable */
 
+/*Decided to use a minor second scale for this one.*/
+
 /* ===== BASE STYLES ===== */
 
 html {
-  background-color: yellow; /* testing for if pages linked to css */
+  font-size: 1em; /* 16px */
+  line-height: 1.25em; /* 20 / 16 = 1.25em */
+  font-family: Tahoma; 
   }
+  
+ h1 {
+   font-size: 1.7925625em; /* 28.681px */
+   line-height: 1.04598863em;  /* 30 / 28.681 =  1.04598863em */
+ }
+ 
+ h2 { 
+  font-size: 1.383em; /* 22.128px */
+  line-height: 1.129790em; /* 25 / 22.128 = 1.129790em */
+ }
+ 
+ h3 {
+   font-size: 1.296em; /* 20.739px */
+   line-height: 1.10902em; /* 23 / 20.739 = 1.10902em */
+ }
+ 
+ h4 {  /* note to self: find a way to separate out italics from award page and add on to this area */
+   font-size: 1.1385em; /* 18.216px */
+   line-height: 1.2077em; /* 22 / 18.216 = 1.2077em */
+   font-style: italic;
+ }
