@@ -13,7 +13,9 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 html {
   font-size: 1em; /* 16px */
   line-height: 1.25em; /* 20 / 16 = 1.25em */
-  font-family: Tahoma; 
+  font-family: Calibri; 
+  background-color: #f9f2ec;
+  padding-left: 17px; /* change to em and fix so alignment is universal for all headers */
   }
   
  h1 {
@@ -31,8 +33,33 @@ html {
    line-height: 1.10902em; /* 23 / 20.739 = 1.10902em */
  }
  
- h4 {  /* note to self: find a way to separate out italics from award page and add on to this area */
-   font-size: 1.1385em; /* 18.216px */
-   line-height: 1.2077em; /* 22 / 18.216 = 1.2077em */
+ h4, i {  
+   font-size: 1.067em; /* 17.072px */
+   line-height: 1.1129em; /* 19 / 17.072 = 1.1129em */
    font-style: italic;
+ }
+ 
+ ul {
+   padding-left: 1.176em; /* 20px */
+ }
+ 
+ 
+ /* ===== MODULAR STYLES ===== */
+ 
+ .content li {
+  list-style-type: disc;
+}
+
+ 
+ .exception li {
+  list-style-type: none;
+}
+
+ /* ===== LAYOUT STYLES ===== */
+ 
+ img {
+  display: block; 
+	max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
  }
