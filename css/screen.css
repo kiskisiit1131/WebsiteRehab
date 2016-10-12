@@ -15,7 +15,8 @@ html {
   line-height: 1.25em; /* 20 / 16 = 1.25em */
   font-family: Calibri; 
   background-color: #f9f2ec;
-  padding-left: 17px; /* change to em and fix so alignment is universal for all headers */
+  padding-left: 15px; /* change to em  */
+  padding-right: 8px;
   }
   
  h1 {
@@ -43,6 +44,8 @@ html {
    padding-left: 1.176em; /* 20px */
  }
  
+
+ 
  
  /* ===== MODULAR STYLES ===== */
  
@@ -54,10 +57,13 @@ html {
  .exception li {
   list-style-type: none;
 }
+  .header ul {
+     padding-left: 0px; /* will fix later */
+  }
 
  /* ===== LAYOUT STYLES ===== */
  
- img {
+ img { /* add different image tag for home page */
   display: block; 
 	max-width: 50%;
   margin-left: auto;
