@@ -15,8 +15,8 @@ html {
   line-height: 1.25em; /* 20 / 16 = 1.25em */
   font-family: Calibri, Helvetica; 
   background-color: #f9f2ec;
-  padding-left: 15px; /* change to em  */
-  padding-right: 8px; /* change to em */
+  padding-left: 0.5em; /* 8 / 16  */
+  padding-right: 0.5em; /* 8 / 16 */
   }
   
  h1 {
@@ -77,28 +77,111 @@ nav ul li a {
  .exception li {
   list-style-type: none;
 }
-  .header ul {
-     padding-left: 0px; /* will fix later */
+  .header ul{
+     padding-left: 0; 
   } 
+ 
+.title h1 {
+  text-align: center;
+}
   
 .homeMain {
   text-align: center;
 }
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 2.1875em; /* 35 px / 16 px */
+    height: 0;  
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
 
  /* ===== LAYOUT STYLES ===== */
  
- img, photo, video { /* add different image tag for home page */
+ img, photo { 
   display: block;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto; 
  }
  
- 
   /* ===== STATE STYLES ===== */
   
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 37.5em) {
   #p{
   text-align: center;
   }
   } 
+  #col2, #col4 {
+    text-align: center;
+  }
+ /*
+@media screen and (min-width: 800px) {
+  #col1 {
+    position: static;
+    float: left;
+    width: 50%;
+    display: table;
+  }
+  #firstPic {
+    padding-top: 30px; 
+  }
+  #lastPic {
+    padding-bottom: 30px; 
+    position: static;
+  }
+
+  #col2 {
+    position: static;
+    float: right;
+    width: 50%;
+    padding-bottom: 20 px;
+    display: table;
+  }
+
+  #col3 {
+    position: relative;
+    float: left;
+    height: 0;
+    width: 50%;
+    overflow: hidden;
+    display: block;
+    column-fill: auto;
+    display: table;
+  }
+  
+
+  #col4 {
+    position: static;
+    float: right;
+    width: 50%;
+    display: table;
+  }
+  #paragraphAdjust1 {
+    padding-top: 50px;
+    padding-bottom: 100px;
+  }
+  #paragraphAdjust2 {
+    padding-top: 140px;
+  }
+  #footerAwards {
+    text-align: right;
+    padding-top: 100px;
+    
+  }
+  */
+}
+
