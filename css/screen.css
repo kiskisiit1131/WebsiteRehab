@@ -108,7 +108,6 @@ nav ul li a {
   text-align: center;
 }
 
-
  /* ===== LAYOUT STYLES ===== */
  
  img, photo { 
@@ -120,11 +119,18 @@ nav ul li a {
  
   /* ===== STATE STYLES ===== */
   
-  @media screen and (min-width: 37.5em) {
-  #p{
+  @media screen and (min-width: 20em) {
+  #copyright{
   text-align: center;
   }
   } 
+   @media screen and (min-width: 37.5em) { 
+   #video-container iframe {
+    width: 50%;
+    height: 50%;
+   }
+   }
+  
    @media screen and (min-width: 50em){
   #col2, #col4 {
     text-align: center;
