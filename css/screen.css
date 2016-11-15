@@ -123,11 +123,12 @@ nav ul li a {
   #copyright{
   text-align: center;
   }
-  
+ /* 
   #grad {
   position: absolute;
   width: 50%;
   }
+  */
   } 
    @media screen and (min-width: 37.5em) { 
    #video-container iframe {
