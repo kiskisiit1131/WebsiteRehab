@@ -124,8 +124,8 @@ nav ul li a {
   text-align: center;
   }
   #grad {
-    position: absolute;
-    width: 50%;
+  position: absolute;
+  width: 50%;
   }
   } 
    @media screen and (min-width: 37.5em) { 
