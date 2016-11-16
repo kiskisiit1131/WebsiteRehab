@@ -67,6 +67,10 @@ nav ul li a {
   text-decoration: none;
   border: 0.125em solid black;
 }
+
+footer {
+  clear: both;
+}
  
  /* ===== MODULAR STYLES ===== */
  
@@ -103,7 +107,7 @@ nav ul li a {
   text-align: center;
 }
 
-.header h1{
+.title h1{
   text-align: center;
 }
  /* ===== LAYOUT STYLES ===== */
@@ -138,7 +142,7 @@ nav ul li a {
     text-align: center;
   }
 
-  #photo, #left {
+  #photo, #left,#github, #linkedin, #img{
     float: left;
     width: 48.3333333333%;
   }
@@ -147,60 +151,3 @@ nav ul li a {
     width: 48.3333333333%;
   }
 }
- /*
-@media screen and (min-width: 800px) {
-  #col1 {
-    position: static;
-    float: left;
-    width: 50%;
-    display: table;
-  }
-  #firstPic {
-    padding-top: 30px; 
-  }
-  #lastPic {
-    padding-bottom: 30px; 
-    position: static;
-  }
-
-  #col2 {
-    position: static;
-    float: right;
-    width: 50%;
-    padding-bottom: 20 px;
-    display: table;
-  }
-
-  #col3 {
-    position: relative;
-    float: left;
-    height: 0;
-    width: 50%;
-    overflow: hidden;
-    display: block;
-    column-fill: auto;
-    display: table;
-  }
-  
-
-  #col4 {
-    position: static;
-    float: right;
-    width: 50%;
-    display: table;
-  }
-  #paragraphAdjust1 {
-    padding-top: 50px;
-    padding-bottom: 100px;
-  }
-  #paragraphAdjust2 {
-    padding-top: 140px;
-  }
-  #footerAwards {
-    text-align: right;
-    padding-top: 100px;
-    
-  }
-  */
-
-
