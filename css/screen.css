@@ -139,7 +139,7 @@ nav ul li a {
    }
   */
    @media screen and (min-width: 50em){
-  #col2, #col4 {
+  #col2, #col4, #align {
     text-align: center;
   }
 }
