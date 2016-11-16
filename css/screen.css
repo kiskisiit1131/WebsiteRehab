@@ -44,6 +44,12 @@ html {
    padding-left: 1.176em; /* 20px */
  }
  
+ footer {
+  clear: both;
+}
+ 
+/* Navigation Bar Styling */
+ 
 nav ul {
   font-size: 1.296em;
   line-height: 1.10902em;
@@ -67,13 +73,28 @@ nav ul li a {
   text-decoration: none;
   border: 0.125em solid black;
 }
-
-footer {
-  clear: both;
-}
  
  /* ===== MODULAR STYLES ===== */
- 
+
+/* Navigation Bar */
+
+.header ul{
+  padding-left: 0; 
+} 
+
+/* Home page */ 
+
+.homeMain {
+  text-align: center;
+}
+
+.rightHome {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+/* Resume Page */
+
  .content li {
   list-style-type: disc;
 }
@@ -81,13 +102,13 @@ footer {
  .exception li {
   list-style-type: none;
 }
- .header ul{
-  padding-left: 0; 
-} 
-   
-.homeMain {
+
+/* Award Page */
+
+.title h1{
   text-align: center;
 }
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -103,13 +124,11 @@ footer {
   width: 100%;
   height: 100%;
 }
+
 .center{
   text-align: center;
 }
-
-.title h1{
-  text-align: center;
-}
+ 
  /* ===== LAYOUT STYLES ===== */
  
  img, photo { 
@@ -142,11 +161,20 @@ footer {
     text-align: center;
   }
 
-  #photo, #left,#github, #linkedin, #img{
+  #photo, #left{
     float: left;
     width: 48.3333333333%;
   }
-  #right {
+
+  #right, #exception {
+    float: right;
+    width: 48.3333333333%;
+  }
+  #img {
+    float: left;
+    width: 48.3333333333%;
+  }
+  #rightHome {
     float: right;
     width: 48.3333333333%;
   }
