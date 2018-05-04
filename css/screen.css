@@ -13,8 +13,9 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 html {
   font-size: 1em; /* 16px */
   line-height: 1.25em; /* 20 / 16 = 1.25em */
-  font-family: Calibri, Helvetica;
-  background-color: #f9f2ec;
+  font-family: Agency FB, Calibri, Helvetica;
+  color: white;
+  background-color: #000000;
   padding-left: 0.5em; /* 8 / 16  */
   padding-right: 0.5em; /* 8 / 16 */
   }
@@ -54,24 +55,21 @@ nav ul {
   font-size: 1.296em;
   line-height: 1.10902em;
   width: 100%;
+  padding-top: 5;
   list-style-type: none;
   text-align: center;
 }
 
 nav ul li {
-  text-align:center;
   display: inline-block;
-  background-color: #dab08b;
-
+  color: white;
+  text-decoration: none;
 }
 
 nav ul li a {
-  display: block;
-  font-family: Calibri, Helvetica;
-  color: black;
-  text-align: center;
+  color: white;
+  padding: 30;
   text-decoration: none;
-  border: 0.125em solid black;
 }
 
  /* ===== MODULAR STYLES ===== */
