@@ -13,43 +13,43 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 html {
   font-size: 1em; /* 16px */
   line-height: 1.25em; /* 20 / 16 = 1.25em */
-  font-family: Calibri, Helvetica; 
+  font-family: Calibri, Helvetica;
   background-color: #f9f2ec;
   padding-left: 0.5em; /* 8 / 16  */
   padding-right: 0.5em; /* 8 / 16 */
   }
-  
+
  h1 {
    font-size: 1.7925625em; /* 28.681px */
    line-height: 1.04598863em;  /* 30 / 28.681 =  1.04598863em */
  }
- 
- h2 { 
+
+ h2 {
   font-size: 1.383em; /* 22.128px */
   line-height: 1.129790em; /* 25 / 22.128 = 1.129790em */
  }
- 
+
  h3 {
    font-size: 1.296em; /* 20.739px */
    line-height: 1.10902em; /* 23 / 20.739 = 1.10902em */
  }
- 
- h4, i {  
+
+ h4, i {
    font-size: 1.067em; /* 17.072px */
    line-height: 1.1129em; /* 19 / 17.072 = 1.1129em */
    font-style: italic;
  }
- 
+
  ul {
    padding-left: 1.176em; /* 20px */
  }
- 
+
  footer {
   clear: both;
 }
- 
+
 /* Navigation Bar Styling */
- 
+
 nav ul {
   font-size: 1.296em;
   line-height: 1.10902em;
@@ -60,7 +60,7 @@ nav ul {
 
 nav ul li {
   text-align:center;
-  display: inline-block; 
+  display: inline-block;
   background-color: #dab08b;
 
 }
@@ -68,21 +68,21 @@ nav ul li {
 nav ul li a {
   display: block;
   font-family: Calibri, Helvetica;
-  color: black; 
+  color: black;
   text-align: center;
   text-decoration: none;
   border: 0.125em solid black;
 }
- 
+
  /* ===== MODULAR STYLES ===== */
 
 /* Navigation Bar */
 
 .header ul{
-  padding-left: 0; 
-} 
+  padding-left: 0;
+}
 
-/* Home page */ 
+/* Home page */
 
 .homeMain {
   text-align: center;
@@ -113,12 +113,12 @@ nav ul li a {
   position: relative;
   padding-bottom: 56.25%;
   padding-top: 2.1875em; /* 35 px / 16 px */
-  height: 0;  
+  height: 0;
   overflow: hidden;
 }
 
 .video-container iframe {
-  position: absolute; 
+  position: absolute;
   top:0;
   left: 0;
   width: 100%;
@@ -128,25 +128,25 @@ nav ul li a {
 .center{
   text-align: center;
 }
- 
+
  /* ===== LAYOUT STYLES ===== */
- 
- img, photo { 
+
+ img, photo {
   display: block;
   max-width: 100%;
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
  }
- 
+
   /* ===== STATE STYLES ===== */
-  
+
   @media screen and (min-width: 20em) {
   #copyright{
     text-align: center;
   }
-} 
+}
 
-  @media screen and (min-width: 37.5em) { 
+  @media screen and (min-width: 37.5em) {
   #align {
     padding-left: 10%;
     padding-right: 10%;
@@ -155,7 +155,7 @@ nav ul li a {
     text-align: center;
   }
 }
- 
+
    @media screen and (min-width: 50em){
   #align {
     text-align: center;
