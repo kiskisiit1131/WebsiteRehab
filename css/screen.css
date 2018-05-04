@@ -72,6 +72,10 @@ nav ul li a {
   text-decoration: none;
 }
 
+a:hover {
+    color: #0C6E86;
+}
+
  /* ===== MODULAR STYLES ===== */
 
 /* Navigation Bar */
