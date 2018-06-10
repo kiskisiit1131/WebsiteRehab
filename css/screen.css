@@ -16,8 +16,8 @@ html {
   font-family: Agency FB, Calibri, Helvetica;
   color: white;
   background-color: #000000;
-  padding-left: 0.5em; /* 8 / 16  */
-  padding-right: 0.5em; /* 8 / 16 */
+  padding-top: 0.5em; /* 8 / 16  */
+  padding-bottom: 0.5em; /* 8 / 16 */
   }
 
  h1 {
@@ -47,6 +47,7 @@ html {
 
  footer {
   clear: both;
+  padding: 1em;
 }
 
 /* Navigation Bar Styling */
@@ -55,20 +56,22 @@ nav ul {
   font-size: 1.296em;
   line-height: 1.10902em;
   width: 100%;
-  padding-top: 5;
+  margin: 5;
+  padding: 1em;
   list-style-type: none;
   text-align: center;
+  word-spacing: 1.5em;
 }
 
 nav ul li {
-  display: inline-block;
+  display: inline-flex;
+/* STOPPED HERE - MID - FLEX Prep */
   color: white;
   text-decoration: none;
 }
 
 nav ul li a {
   color: white;
-  padding: 30;
   text-decoration: none;
 }
 
@@ -84,7 +87,7 @@ a:hover {
   padding-left: 0;
 }
 
-/* Home page */
+/* About page */
 
 .homeMain {
   text-align: center;
