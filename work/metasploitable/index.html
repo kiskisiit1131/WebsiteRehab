@@ -1,0 +1,75 @@
+<html>
+  <h1>Metasploitable Exploits and Hardening</h1>
+  <h2> Written By: Akvile Kiskis</h2>
+  <h3>Updated On: 07/02/2018 </h3>
+  <h4>As I began working with the Metasploitable virtual machine and testing out different exploits, I grew curious on how to protect against them. Unfortunately, I have not seen a guide like this anywhere on the Internet, which is why I decided to create one. The source code for this site is available on GitHub *here* so feel free to clone the repository and add on your own findings as well. </h4>
+ <h4> I'm structuring the guide so you see the exploit first, and then how to patch it afterwards; I also have screenshots included for your reference. </h4>
+  <p> Depending on your experience or comfort with Kali Linux, you can start with either Zenmap or use an nmap command directly on the command line to scan the Metasploitable machine for any open ports. I personally prefer Zenmap because of the GUI. After a port scan of the Metasploitables IP, the first glaring open port is 23 for Telnet. There are a couple exploits utilizing Telnet so I will outline how to do those below before disabling Telnet on the Metasploitable machine. </p>
+  <p> SCREENSHOT OF ZENMAP SCAN HERE </p>
+
+  <p> With Telnet, we can start with something simple; power up Wireshark on your Kali machine. You need to pick a network that you want to capture the network traffic on so pick the one that the Metasploitable machine is running. With Wireshark running, telnet to the Metasploitable machine from your Kali root command line. I linked the YouTube tutorial I used for this for your reference. https://www.youtube.com/watch?v=bZNc7sHt_BY </p>
+  <p> The next exploit that uses Telnet involves port 25 for SMTP.  I linked the tutorial I used for that <ahref="https://pentestlab.blog/2012/11/20/smtp-user-enumeration/">here.</a></p>
+  <p> There is a reason why no one uses Telnet anymore and the exploits above are just a few examples why - the way to patch this is to disable Telnet on the Metapsloitable machine. This will be done by going into /etc/inetd.conf and commenting out the Telnet line, and then restarting the machine. </p>
+
+  <p> SCREENSHOT OF TELNET HERE </p>
+
+  <p> While running through this, I've gotten into the habit of restarting the machine and running another scan to confirm that the port is closed. </p>
+
+  <p> SCREENSHOT OF NO TELNET HERE </p>
+
+  <p> The next port is port 21 with FTP. The exploit is pretty simple; you go into the metasploitable framework, choose the vsftpd_234 backdoor exploit, set the target IP, and run the exploit. This backdoor gives us access to the Metasploitable machine. Here is the YouTube tutorial I used for this https://www.youtube.com/watch?v=pSxCmcZxNaM </p>
+
+  <p> Besides the fact that vsftpd is on version 3.0.3 now and the obvious patch would be to update it, I wanted to know how to patch it just for the version we had because in real life, the patches won't always be this simple. For this patch, you need to go into the vsftpd config file and disable anonymous login for the FTP service. </p>
+
+    <p> SCREENSHOT OF NO ANON HERE </p>
+
+    <p>This alone is not enough for the exploit to not work; the reason being is that if you read the write up on the backdoor here https://xorl.wordpress.com/2011/07/05/vsftpd-2-3-4-backdoor/ , you notice that the attacker is able to log in as :) for the username and listen on port 6200. A strong hardening technique is to set up iptables to drop listening on unused ports. For the sake of this, I only did it for port 6200 since that's what the backdoor uses to get in </p>
+
+  <p> SCREENSHOT NO LISTEN AND FAILED BACKDOOR HERE </p>
+
+  <p> Next is SSH, Telnet's updated replacement. The biggest issue (and an issue with the Metasploitable machine) is the use of passwords (or lack thereof). Obviously, this was set up for testing purposes, but if you are actually using SSH, it would be way smarter to utilize public/private key pairs for authentication instead of passwords. This is because if we have the victim's SSH login credentials, we can easily log into their machines. They key pairs make for a much more secure connection and here is a YouTube tutorial for how to set that up https://www.youtube.com/watch?v=5Fcf-8LPvws </p>
+
+  <p> The samba exploits can be achieved on both ports 139 and 445. This is another Metasploitable exploit so you just use exploit/multi/samba/usermap_script and run it to gain access to the victims machine. Samba released a patch here https://www.samba.org/samba/security/CVE-2007-2447.html , but another alternative is to comment out the userman script line in the samba config file. This can be found in /etc/samba/smb.conf on the Metasploitable machine. </p>
+
+  <p> SMB CONF SS HERE </p>
+  <p> NO SAMBA SS HERE </p>
+
+  <p> Port 1524 has the xinetd super server daemon running on it. This exploit is as simple as typing in nc, the ip address of the target machine, and the port number to get root access of the machine. </p>
+
+  <p> NC EXPLOIT SS HERE </p>
+
+  <p> This is due to the Ingreslock backdoor placed on the machine. If you go to /etc/inetd.conf, you can see the last line has this. </p>
+
+  <p> INGRES SS HERE </p>
+
+  <p> All that needs to be done here is delete that entire line, and then reboot the machine. Note that if you did find a line like this in your config in the wild, you would have to do some more digging to make sure the backdoor didn't spread elsewhere. </p>
+
+  <p> NO INGRES SS HERE </p>
+
+  <p> NO INGRES KALI SS HERE </p>
+
+  <p> Port 2049 is open and has NFS running on it. Note that for this exploit, you need to first installl nfs-common with apt-get-install nfs-common on your Kali Linux machine. Here is the tutorial for the exploit https://www.youtube.com/watch?v=ObmGG-RO9yg . There are many steps you can take to harden the NFS service, however for this particular machine I just added iptables commands to block the Kali machines IP from attempting to mount the Metasploitable machine. The article I referenced is linked here. https://www.alibabacloud.com/help/faq-detail/51143.htm </p>
+
+  <p> IPTABLES SS HERE </p>
+
+  <p> NO MOUNT SS HERE </p>
+
+  <p> Now when you try to mount the Metasploitable machine, the root terminal gets frozen and stuck. </p>
+
+  <p> Port 3306 has MySQL running on it; this can be exploited by using auxiliary modules on Metasploit to scan and find usernames and passwords. The YouTube tutorial here https://www.youtube.com/watch?v=OhpHun0NYyg outlines how to do so. This was another exploit that demonstrated how passwords are not a strong protection mechanism against attackers. I linked a tutorial on how to create RSA keys on MySQL here https://dev.mysql.com/doc/mysql-security-excerpt/5.6/en/creating-rsa-files-using-openssl.html as a mitigation technique. </p>
+
+  <p> Port 5432 has PostGresSQL running on it. This is another easy Metasploit exploit that allows the attacker direct access into the meterpreter shell. </p>
+
+  <p> POSTGRES PAYLOAD SS HERE </p>
+
+  <p> This worked because PostGres is set up to write to the default directory which means that the fix is to change the directory from the default so that the payload won't work. The config file can be found in /etc/postgresql/8.3/main/postgresql.conf. The default directory is /var/lib/postgresql/8.3/main so you can change it to whatever you like. Just know that you actually need to go out and create the new directory because writing it in the config file alone is not enough. Also make sure you reboot the Metasploitable machine after changing this.</p>
+
+  <p> NEW DIR SS HERE </p>
+
+  <p> NO POSTGRES SS HERE </p>
+
+  <p>Port 5900 has VNC 3.3 running on it and this exploit uses another auxiliary module exploit on Metasploit. Here is the YouTube tutorial on how to do so https://www.youtube.com/watch?v=ZyFFIeeNrr0 . For this particular case, since the password was "password", it would be wise to change that to something stronger or even better, use public/private keys for this as well. Instructions are linked here https://ubuntuforums.org/showthread.php?t=383053</p>
+
+<p>Port 6667 is running UnrealIRCd that has a backdoor on it. Here is the YouTube tutorial I used to test this out https://www.youtube.com/watch?v=s-IQHbqv4KY .</p>
+
+  </html>
