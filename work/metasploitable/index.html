@@ -8,7 +8,7 @@
   </head>
     <body>
       <h1>Metasploitable Exploits and Hardening Guide</h1>
-  <h2>Updated On: 07/02/2018 </h2>
+  <h2>Updated On: 07/05/2018 </h2>
   <h3>Introduction</h3>
   <p>As I began working with the Metasploitable virtual machine and testing out different exploits, I grew curious on how to protect against them. Unfortunately, I have not seen a guide like this anywhere on the Internet, which is why I decided to create one. <a href="https://github.com/kiskisiit1131/WebsiteRehab/blob/master/work/metasploitable/index.html">The source code for this site is available on GitHub here</a> so feel free to clone the repository and add on your own findings as well.</p>
   <p> I'm structuring the guide so you see the exploit first, and then how to patch it afterwards; I also have screenshots included for your reference. Let's begin!</p>
@@ -30,16 +30,14 @@
   <img src="screenshots/notelnet.png" alt="No Telnet">
   <h4>Zenmap scan with no Telnet</h4>
 
-  <p>Success! Time to move on.</p>
-
   <h3>Port 21 - FTP</h3>
 
   <p> This exploit is pretty simple; you go into the metasploitable framework, choose the vsftpd_234 backdoor exploit, set the target IP, and run the exploit. This backdoor gives us root access to the Metasploitable machine. Here is the <a href="https://www.youtube.com/watch?v=pSxCmcZxNaM">YouTube tutorial</a> I used for this.  </p>
 
-  <p> Besides the fact that vsftpd is on version 3.0.3 now and the obvious patch would be to update it, I wanted to know how to patch it just for the version we had because in real life, the patches won't always be this simple. For this patch, you need to go into the vsftpd config file located in <b>/etc/vsftpd.conf</b> and disable anonymous login for the FTP service. </p>
+  <p> Besides the fact that vsftpd is on version 3.0.3 now and the obvious patch would be to update it, I wanted to know how to patch it just for the version we had because in real life, the patches won't always be this simple. For this patch, you need to go into the vsftpd config file located in <b>/etc/vsftpd.conf</b> and disable anonymous upload for the FTP service. </p>
 
-  <img src="screenshots/nonanon.png" alt="No Anon Login">
-  <h4>/etc/vsftpd.conf with anonymous login removed</h4>
+  <img src="screenshots/nonanon.png" alt="No Anon Upload">
+  <h4>/etc/vsftpd.conf with anonymous upload removed</h4>
 
   <p>This alone is not enough for the exploit to not work; the reason being is that if you read the write up on the backdoor <a href="https://xorl.wordpress.com/2011/07/05/vsftpd-2-3-4-backdoor/">here</a>, you notice that the attacker is able to log in as ":)" for the username and listen on port 6200. A hardening technique for this particular case is to set up iptables to drop listening on unused ports. For the sake of this, I only did it for port 6200 since that's what the backdoor uses to get in. </p>
 
@@ -47,8 +45,6 @@
   <h4>iptables commands to drop traffic at port 6200</h4>
   <img src="screenshots/failedbackdoor.png" alt="Failed Backdoor">
   <h4>what happens when you try the exploit after using iptables</h4>
-
-  <p> All clear! Let's move forward.</p>
 
   <h3>Ports 139 and 145 - Samba </h3>
 
@@ -78,8 +74,6 @@
   <img src="screenshots/noingreskali.png" alt="No Ingres Kali">
   <h4>Exploit attempt post removal</h4>
 
-  <p>We're now Ingres free, let's move on.</p>
-
   <h3>Port 2049 - NFS </h3>
 
   <p> Note that for this exploit, you need to first install nfs-common with apt-get-install nfs-common on your Kali Linux machine. <a href="https://www.youtube.com/watch?v=ObmGG-RO9yg">Here</a> is the tutorial for the exploit. There are many steps you can take to harden the NFS service, however for this particular machine I just added iptables commands to block the Kali machines IP from attempting to mount the Metasploitable machine. The article I referenced is linked <a href="https://www.alibabacloud.com/help/faq-detail/51143.htm">here.</a></p>
@@ -107,8 +101,6 @@
   <img src="screenshots/nopostgres.png" alt="No PostGres">
   <h4>exploit attempt after directory change</h4>
 
-  <p>Hooray for no more PostGres holes (for now).</p>
-
   <h2>What Can't Be Patched</h2>
 
   <p>I also wanted to note the exploits that have no "patches"; I put this in quotes because there are other ways to mitigate these vulnerabilities.</p>
@@ -129,7 +121,8 @@
 
   <p>Hooray for another backdoor! <a href="https://www.youtube.com/watch?v=s-IQHbqv4KY">Here</a> is the YouTube tutorial I used to test this out. This one actually can't be patched from the Metasploitable machines side (as far as I know). I'm only saying this because after I read <a href="https://www.unrealircd.org/txt/unrealsecadvisory.20100612.txt">this statement</a> released by Unreal, I understood that there was nothing else I can do except the steps outlined in the screenshot below. </p>
 
-  <p> UNREAL SS HERE </p>
+  <img src="screenshots/unreal.png" alt="Unreal">
+  <h4>Screenshot solution from Unreal</h4>
 
   <h3>Port 8180 - Apache Tomcat</h3>
 
