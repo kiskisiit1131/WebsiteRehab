@@ -18,8 +18,8 @@
   <h4>Zenmap Output</h4>
 
   <h3>Ports 23 and 25 - Telnet and SMTP </h3>
-  <p> With Telnet, we can start with something simple; power up Wireshark on your Kali machine. You need to pick a network that you want to capture the network traffic on so pick the one that the Metasploitable machine is running. With Wireshark running, telnet to the Metasploitable machine from your Kali root command line. I linked the <a href="https://www.youtube.com/watch?v=bZNc7sHt_BY"> YouTube tutorial</a> I used for your reference. </p>
-  <p> The next exploit that uses Telnet involves port 25 for SMTP.  I linked the tutorial I used for that <a href="https://pentestlab.blog/2012/11/20/smtp-user-enumeration/">here.</a></p>
+  <p> With Telnet, we can start with something simple; power up Wireshark on your Kali machine. You need to pick a network that you want to capture the network traffic on so pick the one that the Metasploitable machine is running. With Wireshark running, telnet to the Metasploitable machine from your Kali root command line. <a href="https://www.youtube.com/watch?v=bZNc7sHt_BY"> I linked the YouTube tutorial</a> I used for your reference. </p>
+  <p> The next exploit that uses Telnet involves port 25 for SMTP. <a href="https://pentestlab.blog/2012/11/20/smtp-user-enumeration/">I linked the tutorial I used for that here.</a></p>
   <p> There is a reason why no one uses Telnet anymore and the exploits above are just a few examples why - the best way to mitigate this is to disable Telnet on the Metasploitable machine (if it was a real server, just use SSH instead). This will be done by going into <b>/etc/inetd.conf</b> and commenting out the Telnet line, and then restarting the machine. </p>
 
   <img src="screenshots/telnet.png" alt="Telnet">
@@ -32,14 +32,14 @@
 
   <h3>Port 21 - FTP</h3>
 
-  <p> This exploit is pretty simple; you go into the metasploitable framework, choose the vsftpd_234 backdoor exploit, set the target IP, and run the exploit. This backdoor gives us root access to the Metasploitable machine. Here is the <a href="https://www.youtube.com/watch?v=pSxCmcZxNaM">YouTube tutorial</a> I used for this.  </p>
+  <p> This exploit is pretty simple; you go into the metasploitable framework, choose the vsftpd_234 backdoor exploit, set the target IP, and run the exploit. This backdoor gives us root access to the Metasploitable machine. <a href="https://www.youtube.com/watch?v=pSxCmcZxNaM">Here is the YouTube tutorial</a> I used for this.  </p>
 
   <p> Besides the fact that vsftpd is on version 3.0.3 now and the obvious patch would be to update it, I wanted to know how to patch it just for the version we had because in real life, the patches won't always be this simple. For this patch, you need to go into the vsftpd config file located in <b>/etc/vsftpd.conf</b> and disable anonymous upload for the FTP service. </p>
 
   <img src="screenshots/nonanon.png" alt="No Anon Upload">
   <h4>/etc/vsftpd.conf with anonymous upload removed</h4>
 
-  <p>This alone is not enough for the exploit to not work; the reason being is that if you read the write up on the backdoor <a href="https://xorl.wordpress.com/2011/07/05/vsftpd-2-3-4-backdoor/">here</a>, you notice that the attacker is able to log in as ":)" for the username and listen on port 6200. A hardening technique for this particular case is to set up iptables to drop listening on unused ports. For the sake of this, I only did it for port 6200 since that's what the backdoor uses to get in. </p>
+  <p>This alone is not enough for the exploit to not work; the reason being is that <a href="https://xorl.wordpress.com/2011/07/05/vsftpd-2-3-4-backdoor/">if you read the write up on the backdoor here</a>, you notice that the attacker is able to log in as ":)" for the username and listen on port 6200. A hardening technique for this particular case is to set up iptables to drop listening on unused ports. For the sake of this, I only did it for port 6200 since that's what the backdoor uses to get in. </p>
 
   <img src="screenshots/nolisten.png" alt="No Listen">
   <h4>iptables commands to drop traffic at port 6200</h4>
@@ -48,14 +48,12 @@
 
   <h3>Ports 139 and 145 - Samba </h3>
 
-  <p> This is another Metasploitable exploit so you just use exploit/multi/samba/usermap_script and run it to gain access to the victims machine. Samba released a patch <a href="https://www.samba.org/samba/security/CVE-2007-2447.html">here</a>, but another alternative is to comment out the userman script line in the samba config file. This can be found in <b>/etc/samba/smb.conf</b> on the Metasploitable machine. </p>
+  <p> This is another Metasploitable exploit so you just use exploit/multi/samba/usermap_script and run it to gain access to the victims machine. <a href="https://www.samba.org/samba/security/CVE-2007-2447.html">Samba released a patch here</a>, but another alternative is to comment out the userman script line in the samba config file. This can be found in <b>/etc/samba/smb.conf</b> on the Metasploitable machine. </p>
 
   <img src="screenshots/smbconf.png" alt="Samba Conf">
   <h4>Commented out the userman script</h4>
   <img src="screenshots/nosamba.png" alt="No Samba">
   <h4>What happens with the exploit after you comment out the userman script</h4>
-
-  <p>Another one cleared, on to the next!</p>
 
   <h3>Port 1524 - Ingreslock Backdoor</h3>
 
@@ -76,7 +74,7 @@
 
   <h3>Port 2049 - NFS </h3>
 
-  <p> Note that for this exploit, you need to first install nfs-common with apt-get-install nfs-common on your Kali Linux machine. <a href="https://www.youtube.com/watch?v=ObmGG-RO9yg">Here</a> is the tutorial for the exploit. There are many steps you can take to harden the NFS service, however for this particular machine I just added iptables commands to block the Kali machines IP from attempting to mount the Metasploitable machine. The article I referenced is linked <a href="https://www.alibabacloud.com/help/faq-detail/51143.htm">here.</a></p>
+  <p> Note that for this exploit, you need to first install nfs-common with apt-get-install nfs-common on your Kali Linux machine. <a href="https://www.youtube.com/watch?v=ObmGG-RO9yg">Hereis the tutorial for the exploit.</a> There are many steps you can take to harden the NFS service, however for this particular machine I just added iptables commands to block the Kali machines IP from attempting to mount the Metasploitable machine. <a href="https://www.alibabacloud.com/help/faq-detail/51143.htm">The article I referenced is linked here.</a></p>
 
   <img src="screenshots/iptables.png" alt="IP Tables">
   <h4>IP tables commands</h4>
@@ -107,28 +105,28 @@
 
   <h3>Port 22 - SSH</h3>
 
-  <p> Good old SSH, Telnet's updated replacement. The biggest issue (and an issue with the Metasploitable machine) is the use of passwords (or lack thereof). Obviously, this was set up for testing purposes, but if you are actually using SSH, it would be way smarter to utilize public/private key pairs for authentication instead of passwords. This is because if we have the victim's SSH login credentials, we can easily log into their machines. They key pairs make for a much more secure connection and here is a <a href="https://www.youtube.com/watch?v=5Fcf-8LPvws">YouTube tutorial</a> for how to set that up. </p>
+  <p> Good old SSH, Telnet's updated replacement. The biggest issue (and an issue with the Metasploitable machine) is the use of passwords (or lack thereof). Obviously, this was set up for testing purposes, but if you are actually using SSH, it would be way smarter to utilize public/private key pairs for authentication instead of passwords. This is because if we have the victim's SSH login credentials, we can easily log into their machines. They key pairs make for a much more secure connection and <a href="https://www.youtube.com/watch?v=5Fcf-8LPvws">here is a YouTube tutorial</a> for how to set that up. </p>
 
   <h3>Port 3306 - MySQL</h3>
 
-  <p> This can be exploited by using auxiliary modules on Metasploit to scan and find usernames and passwords. The YouTube tutorial <a href="https://www.youtube.com/watch?v=OhpHun0NYyg">here</a> outlines how to do so. This was another exploit that demonstrated how passwords are not a strong protection mechanism against attackers. I linked a tutorial on how to create RSA keys on MySQL <a href="https://dev.mysql.com/doc/mysql-security-excerpt/5.6/en/creating-rsa-files-using-openssl.html">here</a> as a mitigation technique. </p>
+  <p> This can be exploited by using auxiliary modules on Metasploit to scan and find usernames and passwords. <a href="https://www.youtube.com/watch?v=OhpHun0NYyg">The YouTube tutorial here</a> outlines how to do so. This was another exploit that demonstrated how passwords are not a strong protection mechanism against attackers. <a href="https://dev.mysql.com/doc/mysql-security-excerpt/5.6/en/creating-rsa-files-using-openssl.html">I linked a tutorial on how to create RSA keys on MySQL here</a> as a mitigation technique. </p>
 
   <h3> Port 5900 - VNC</h3>
 
-  <p>This also uses an auxiliary module exploit on Metasploit. <a href="https://www.youtube.com/watch?v=ZyFFIeeNrr0">Here</a> is the YouTube tutorial on how to do so. For this particular case, since the password was "password", it would be wise to change that to something stronger or even better, use public/private keys for this as well. Instructions are linked <a href="https://ubuntuforums.org/showthread.php?t=383053">here.</a></p>
+  <p>This also uses an auxiliary module exploit on Metasploit. <a href="https://www.youtube.com/watch?v=ZyFFIeeNrr0">Here is the YouTube tutorial</a> on how to do so. For this particular case, since the password was "password", it would be wise to change that to something stronger or even better, use public/private keys for this as well. <a href="https://ubuntuforums.org/showthread.php?t=383053">Instructions are linked here.</a></p>
 
   <h3> Port 6667 - UnrealIRCd</h3>
 
-  <p>Hooray for another backdoor! <a href="https://www.youtube.com/watch?v=s-IQHbqv4KY">Here</a> is the YouTube tutorial I used to test this out. This one actually can't be patched from the Metasploitable machines side (as far as I know). I'm only saying this because after I read <a href="https://www.unrealircd.org/txt/unrealsecadvisory.20100612.txt">this statement</a> released by Unreal, I understood that there was nothing else I can do except the steps outlined in the screenshot below. </p>
+  <p>Hooray for another backdoor! <a href="https://www.youtube.com/watch?v=s-IQHbqv4KY">Here is the YouTube tutorial</a> I used to test this out. This one actually can't be patched from the Metasploitable machines side (as far as I know). I'm only saying this because after I read <a href="https://www.unrealircd.org/txt/unrealsecadvisory.20100612.txt">this statement released by Unreal,</a> I understood that there was nothing else I can do except the steps outlined in the screenshot below. </p>
 
   <img src="screenshots/unreal.png" alt="Unreal">
   <h4>Screenshot solution from Unreal</h4>
 
   <h3>Port 8180 - Apache Tomcat</h3>
 
-  <p> This is yet another auxiliary module exploit where the attacker can find the victim's login credentials. <a href="https://pentestlab.blog/2012/03/22/apache-tomcat-exploitation">Here</a> is the tutorial I used to do so. Similar to VNC, the user had weak credentials so the best mitigation would be to have stronger passwords or as I've reiterated multiple times througout this guide, use public/private key pairs instead. <a href="https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html">Here</a> is a tutorial on how to do so on Apache Tomcat 9.0. </p>
+  <p> This is yet another auxiliary module exploit where the attacker can find the victim's login credentials. <a href="https://pentestlab.blog/2012/03/22/apache-tomcat-exploitation">Here</a> is the tutorial I used to do so. Similar to VNC, the user had weak credentials so the best mitigation would be to have stronger passwords or as I've reiterated multiple times througout this guide, use public/private key pairs instead. <a href="https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html">Here is a tutorial</a> on how to do so on Apache Tomcat 9.0. </p>
   <h3>Port 2121 - vsftpd</h3>
-  <p> This exploit also involves weak passwords (shocker, I know). Details on the exploit are<a href="https://bytesoverbombs.io/metasploitable-2-part-1-vsftpd-proftpd-983ea6994d5b">here</a>. After some research, I learned that FTP isn't considered secure anymore and that it would be beneficial to switch to SFTP; <a href="https://titanftp.com/2018/05/18/whats-the-difference-ftp-sftp-and-ftp-s/">details on that are here.</a></p>
+  <p> This exploit also involves weak passwords (shocker, I know). <a href="https://bytesoverbombs.io/metasploitable-2-part-1-vsftpd-proftpd-983ea6994d5b">Details on the exploit are here.</a> After some research, I learned that FTP isn't considered secure anymore and that it would be beneficial to switch to SFTP; <a href="https://titanftp.com/2018/05/18/whats-the-difference-ftp-sftp-and-ftp-s/">details on that are here.</a></p>
 
   <h2>The Two Problem Children</h2>
 
@@ -140,7 +138,7 @@
 
   <h3>Port 1099 - Java RMI Registry</h3>
 
-  <p>The final exploits tutorial is <a href="https://www.youtube.com/watch?v=TZm1rmQ_1WY">here</a> for your reference. This payload was written in Ruby, which I unfortunately am unfamiliar with. <a href="https://github.cin.rapid7/metasploit-framework/blob/master/modules/explloits/multi/misc/java_rmi_server.rb">Here is the source code</a> for the exploit; the only thing that stood out to me was that this doesn't work against JMX ports since they do not support class loading so that could be a possibility. I did some research on JMX and how to set it up, but couldn't make much sense of it.</p>
+  <p><a href="https://www.youtube.com/watch?v=TZm1rmQ_1WY">The final exploits tutorial is here</a> for your reference. This payload was written in Ruby, which I unfortunately am unfamiliar with. <a href="https://github.cin.rapid7/metasploit-framework/blob/master/modules/explloits/multi/misc/java_rmi_server.rb">Here is the source code</a> for the exploit; the only thing that stood out to me was that this doesn't work against JMX ports since they do not support class loading so that could be a possibility. I did some research on JMX and how to set it up, but couldn't make much sense of it.</p>
 
   <h3>Conclusion</h3>
   <p>This concludes the guide, sorry that it ended on a defeated note, it would sadden you if I told you how long I spent looking at those last two ports in particular. I hope that this was all useful information and is helpful to whoever reads it; please feel free to add on to it (especially for those last two that stumped me).</p>
