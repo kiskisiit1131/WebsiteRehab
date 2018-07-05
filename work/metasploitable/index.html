@@ -7,25 +7,28 @@
     <link rel="stylesheet" media="screen" href="../../css/screen.css" />
   </head>
     <body>
-      <h1>Metasploitable Exploits and Hardening</h1>
+      <h1>Metasploitable Exploits and Hardening Guide</h1>
   <h2>Updated On: 07/02/2018 </h2>
-  <h4>As I began working with the Metasploitable virtual machine and testing out different exploits, I grew curious on how to protect against them. Unfortunately, I have not seen a guide like this anywhere on the Internet, which is why I decided to create one. The source code for this site is available on GitHub <a href="https://github.com/kiskisiit1131/WebsiteRehab/blob/master/work/metasploitable/index.html">here</a> so feel free to clone the repository and add on your own findings as well.</h4>
-  <h4> I'm structuring the guide so you see the exploit first, and then how to patch it afterwards; I also have screenshots included for your reference. Let's begin!</h4>
-
+  <h3>Introduction</h3>
+  <p>As I began working with the Metasploitable virtual machine and testing out different exploits, I grew curious on how to protect against them. Unfortunately, I have not seen a guide like this anywhere on the Internet, which is why I decided to create one. <a href="https://github.com/kiskisiit1131/WebsiteRehab/blob/master/work/metasploitable/index.html">The source code for this site is available on GitHub here</a> so feel free to clone the repository and add on your own findings as well.</p>
+  <p> I'm structuring the guide so you see the exploit first, and then how to patch it afterwards; I also have screenshots included for your reference. Let's begin!</p>
+  <h3>Network Scan</h3>
   <p> Depending on your experience or comfort with Kali Linux, you can start with either Zenmap or use an nmap command directly on the command line to scan the Metasploitable machine for any open ports. I personally prefer Zenmap because of the GUI. After a port scan of the Metasploitables IP, the first glaring open port is 23 for Telnet. There are a couple exploits utilizing Telnet so I will outline how to do those below before disabling Telnet on the Metasploitable machine. </p>
   <img src="screenshots/zenmapscan.png" alt="Zenmap Scan">
-  <p>Right away, I want to point out Telnet as a glaring vulnerability on the machine so we'll begin with that first</p>
+  <h4>Zenmap Output</h4>
 
   <h3>Ports 23 and 25 - Telnet and SMTP </h3>
-  <p> With Telnet, we can start with something simple; power up Wireshark on your Kali machine. You need to pick a network that you want to capture the network traffic on so pick the one that the Metasploitable machine is running. With Wireshark running, telnet to the Metasploitable machine from your Kali root command line. I linked the <a href" https://www.youtube.com/watch?v=bZNc7sHt_BY"> YouTube tutorial</a> I used for this for your reference. </p>
+  <p> With Telnet, we can start with something simple; power up Wireshark on your Kali machine. You need to pick a network that you want to capture the network traffic on so pick the one that the Metasploitable machine is running. With Wireshark running, telnet to the Metasploitable machine from your Kali root command line. I linked the <a href="https://www.youtube.com/watch?v=bZNc7sHt_BY"> YouTube tutorial</a> I used for your reference. </p>
   <p> The next exploit that uses Telnet involves port 25 for SMTP.  I linked the tutorial I used for that <a href="https://pentestlab.blog/2012/11/20/smtp-user-enumeration/">here.</a></p>
-  <p> There is a reason why no one uses Telnet anymore and the exploits above are just a few examples why - the way to patch this is to disable Telnet on the Metapsloitable machine. This will be done by going into /etc/inetd.conf and commenting out the Telnet line, and then restarting the machine. </p>
+  <p> There is a reason why no one uses Telnet anymore and the exploits above are just a few examples why - the best way to mitigate this is to disable Telnet on the Metasploitable machine (if it was a real server, just use SSH instead). This will be done by going into <b>/etc/inetd.conf</b> and commenting out the Telnet line, and then restarting the machine. </p>
 
   <img src="screenshots/telnet.png" alt="Telnet">
+  <h4>/etc/inetd.conf with Telnet commented out</h4>
 
-  <p> Side note: while running through this entire guide, I've gotten into the habit of restarting the machine and running another scan to confirm that the port is closed or run the exploit again and ensure that it failed. </p>
+  <p> <b>Side note:</b> While running through this entire guide, I've gotten into the habit of restarting the machine and running another scan to confirm that the port is closed or run the exploit again and ensure that it failed. Obviously this isn't required, but it is a good habit to get into when you're working on something like this. </p>
 
   <img src="screenshots/notelnet.png" alt="No Telnet">
+  <h4>Zenmap scan with no Telnet</h4>
 
   <p>Success! Time to move on.</p>
 
@@ -33,23 +36,28 @@
 
   <p> This exploit is pretty simple; you go into the metasploitable framework, choose the vsftpd_234 backdoor exploit, set the target IP, and run the exploit. This backdoor gives us root access to the Metasploitable machine. Here is the <a href="https://www.youtube.com/watch?v=pSxCmcZxNaM">YouTube tutorial</a> I used for this.  </p>
 
-  <p> Besides the fact that vsftpd is on version 3.0.3 now and the obvious patch would be to update it, I wanted to know how to patch it just for the version we had because in real life, the patches won't always be this simple. For this patch, you need to go into the vsftpd config file and disable anonymous login for the FTP service. </p>
+  <p> Besides the fact that vsftpd is on version 3.0.3 now and the obvious patch would be to update it, I wanted to know how to patch it just for the version we had because in real life, the patches won't always be this simple. For this patch, you need to go into the vsftpd config file located in <b>/etc/vsftpd.conf</b> and disable anonymous login for the FTP service. </p>
 
-  <img src="screenshots/noanon.png" alt="No Anon Login">
+  <img src="screenshots/nonanon.png" alt="No Anon Login">
+  <h4>/etc/vsftpd.conf with anonymous login removed</h4>
 
-  <p>This alone is not enough for the exploit to not work; the reason being is that if you read the write up on the backdoor <a href="https://xorl.wordpress.com/2011/07/05/vsftpd-2-3-4-backdoor/">here</a>, you notice that the attacker is able to log in as :) for the username and listen on port 6200. A hardening technique for this particular case is to set up iptables to drop listening on unused ports. For the sake of this, I only did it for port 6200 since that's what the backdoor uses to get in. </p>
+  <p>This alone is not enough for the exploit to not work; the reason being is that if you read the write up on the backdoor <a href="https://xorl.wordpress.com/2011/07/05/vsftpd-2-3-4-backdoor/">here</a>, you notice that the attacker is able to log in as ":)" for the username and listen on port 6200. A hardening technique for this particular case is to set up iptables to drop listening on unused ports. For the sake of this, I only did it for port 6200 since that's what the backdoor uses to get in. </p>
 
   <img src="screenshots/nolisten.png" alt="No Listen">
+  <h4>iptables commands to drop traffic at port 6200</h4>
   <img src="screenshots/failedbackdoor.png" alt="Failed Backdoor">
+  <h4>what happens when you try the exploit after using iptables</h4>
 
   <p> All clear! Let's move forward.</p>
 
   <h3>Ports 139 and 145 - Samba </h3>
 
-  <p> This is another Metasploitable exploit so you just use exploit/multi/samba/usermap_script and run it to gain access to the victims machine. Samba released a patch <a href="https://www.samba.org/samba/security/CVE-2007-2447.html">here</a>, but another alternative is to comment out the userman script line in the samba config file. This can be found in /etc/samba/smb.conf on the Metasploitable machine. </p>
+  <p> This is another Metasploitable exploit so you just use exploit/multi/samba/usermap_script and run it to gain access to the victims machine. Samba released a patch <a href="https://www.samba.org/samba/security/CVE-2007-2447.html">here</a>, but another alternative is to comment out the userman script line in the samba config file. This can be found in <b>/etc/samba/smb.conf</b> on the Metasploitable machine. </p>
 
   <img src="screenshots/smbconf.png" alt="Samba Conf">
+  <h4>Commented out the userman script</h4>
   <img src="screenshots/nosamba.png" alt="No Samba">
+  <h4>What happens with the exploit after you comment out the userman script</h4>
 
   <p>Another one cleared, on to the next!</p>
 
@@ -58,40 +66,46 @@
   <p> Port 1524 has the xinetd super server daemon running on it. This exploit is as simple as typing in nc, the ip address of the target machine, and the port number to get root access of the machine. </p>
 
   <img src="screenshots/ncexploit.png" alt="NC Exploit">
+  <h4>NC exploit</h4>
 
-  <p> This works due to the Ingreslock backdoor placed on the machine. If you go to /etc/inetd.conf, you can see the last line has this. </p>
+  <p> This works due to the Ingreslock backdoor placed on the machine. If you go to <b>/etc/inetd.conf</b>, you can see the last line has this. </p>
 
   <img src="screenshots/ingres.png" alt="Ingres">
+  <h4>Ingreslock backdoor code</h4>
 
   <p> All that needs to be done here is delete that entire line, and then reboot the machine. Note that if you did find a line like this in your config in the wild, you would have to do some more digging to make sure the backdoor didn't spread elsewhere. </p>
 
-  <img src="screenshots/noingres.png" alt="No Ingres">
-
   <img src="screenshots/noingreskali.png" alt="No Ingres Kali">
+  <h4>Exploit attempt post removal</h4>
 
   <p>We're now Ingres free, let's move on.</p>
 
   <h3>Port 2049 - NFS </h3>
 
-  <p> Port 2049 is open and has NFS running on it. Note that for this exploit, you need to first installl nfs-common with apt-get-install nfs-common on your Kali Linux machine. <a href="https://www.youtube.com/watch?v=ObmGG-RO9yg">Here</a> is the tutorial for the exploit. There are many steps you can take to harden the NFS service, however for this particular machine I just added iptables commands to block the Kali machines IP from attempting to mount the Metasploitable machine. The article I referenced is linked <a href="https://www.alibabacloud.com/help/faq-detail/51143.htm">here.</a></p>
+  <p> Note that for this exploit, you need to first install nfs-common with apt-get-install nfs-common on your Kali Linux machine. <a href="https://www.youtube.com/watch?v=ObmGG-RO9yg">Here</a> is the tutorial for the exploit. There are many steps you can take to harden the NFS service, however for this particular machine I just added iptables commands to block the Kali machines IP from attempting to mount the Metasploitable machine. The article I referenced is linked <a href="https://www.alibabacloud.com/help/faq-detail/51143.htm">here.</a></p>
 
   <img src="screenshots/iptables.png" alt="IP Tables">
+  <h4>IP tables commands</h4>
 
   <img src="screenshots/nomount.png" alt="No Mount">
+  <h4>Failed mount</h4>
 
   <p> Now when you try to mount the Metasploitable machine, the root terminal gets frozen and stuck. </p>
 
   <h3>Port 5432 - PostGresSQL</h3>
 
-  <p> Port 5432 has PostGresSQL running on it. This is another easy Metasploit exploit that allows the attacker direct access into the meterpreter shell. </p>
+  <p> This is another easy Metasploit exploit that allows the attacker direct access into the meterpreter shell. </p>
 
   <img src="screenshots/postgrespayload.png" alt="PostGres Payload">
+  <h4>PostGres Exploit</h4>
 
-  <p> This worked because PostGres is set up to write to the default directory which means that the fix is to change the directory from the default so that the payload won't work. The config file can be found in /etc/postgresql/8.3/main/postgresql.conf. The default directory is /var/lib/postgresql/8.3/main so you can change it to whatever you like. Just know that you actually need to go out and create the new directory because writing it in the config file alone is not enough. Also, make sure you reboot the Metasploitable machine after changing this.</p>
+  <p> This worked because PostGres is set up to write to the default directory which means that the fix is to change the directory from the default so that the payload won't work. The config file can be found in <b>/etc/postgresql/8.3/main/postgresql.conf</b>. The default directory is <b>/var/lib/postgresql/8.3/main</b> so you can change it to whatever you like. Just know that you actually need to go out and create the new directory because writing it in the config file alone is not enough. Also, make sure you reboot the Metasploitable machine after changing this.</p>
 
   <img src="screenshots/newdir.png" alt="New Directory">
+  <h4>changed to new directory called datadir</h4>
 
   <img src="screenshots/nopostgres.png" alt="No PostGres">
+  <h4>exploit attempt after directory change</h4>
 
   <p>Hooray for no more PostGres holes (for now).</p>
 
@@ -113,7 +127,7 @@
 
   <h3> Port 6667 - UnrealIRCd</h3>
 
-  <p>Hooray for another backdoor! <a href="https://www.youtube.com/watch?v=s-IQHbqv4KY">Here</a> is the YouTube tutorial I used to test this out.This one actually can't be patched from the Metasploitable machines side (as far as I know). I'm only saying this because after I read <a href="https://www.unrealircd.org/txt/unrealsecadvisory.20100612.txt">this statement</a> released by Unreal, I understood that there was nothing else I can do except the steps outlined in the screenshot below. </p>
+  <p>Hooray for another backdoor! <a href="https://www.youtube.com/watch?v=s-IQHbqv4KY">Here</a> is the YouTube tutorial I used to test this out. This one actually can't be patched from the Metasploitable machines side (as far as I know). I'm only saying this because after I read <a href="https://www.unrealircd.org/txt/unrealsecadvisory.20100612.txt">this statement</a> released by Unreal, I understood that there was nothing else I can do except the steps outlined in the screenshot below. </p>
 
   <p> UNREAL SS HERE </p>
 
@@ -121,7 +135,7 @@
 
   <p> This is yet another auxiliary module exploit where the attacker can find the victim's login credentials. <a href="https://pentestlab.blog/2012/03/22/apache-tomcat-exploitation">Here</a> is the tutorial I used to do so. Similar to VNC, the user had weak credentials so the best mitigation would be to have stronger passwords or as I've reiterated multiple times througout this guide, use public/private key pairs instead. <a href="https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html">Here</a> is a tutorial on how to do so on Apache Tomcat 9.0. </p>
   <h3>Port 2121 - vsftpd</h3>
-  <p> This exploit also involves weak passwords (shocker, I know). Details on the exploit are<a href="https://bytesoverbombs.io/metasploitable-2-part-1-vsftpd-proftpd-983ea6994d5b">here</a>. After some research, I learned that FTP isn't considered secure anymore and that it would be beneficial to switch to SFTP; details on that are <a href="https://titanftp.com/2018/05/18/whats-the-difference-ftp-sftp-and-ftp-s/">here</a></p>
+  <p> This exploit also involves weak passwords (shocker, I know). Details on the exploit are<a href="https://bytesoverbombs.io/metasploitable-2-part-1-vsftpd-proftpd-983ea6994d5b">here</a>. After some research, I learned that FTP isn't considered secure anymore and that it would be beneficial to switch to SFTP; <a href="https://titanftp.com/2018/05/18/whats-the-difference-ftp-sftp-and-ftp-s/">details on that are here.</a></p>
 
   <h2>The Two Problem Children</h2>
 
@@ -129,12 +143,13 @@
 
   <h3>Port 80 - Apache </h3>
 
-  <p>This vulnerability is PHP based (hence my earlier comment). I would post an actual video of how to do this, but I imagine at this point you've figured out how to read through the exploits on rapid7 anyways. <a href="https://www.raipd7.com/db/modules/exploit/multi/http/php_cgi_arg_injection">Here's the rapid7 link</a> for the php injection exploit.The furthest I got was looking into <a href="https://www.eindbazen/net/2012/05/php-cgi-advisory-cve-2012-1823">this webpage</a> detailing how the exploit works codewise.</p>
+  <p>This vulnerab  ility is PHP based (hence my earlier comment). I would post an actual video of how to do this, but I imagine at this point you've figured out how to read through the exploits on rapid7 anyways. <a href="https://www.raipd7.com/db/modules/exploit/multi/http/php_cgi_arg_injection">Here's the rapid7 link</a> for the php injection exploit.The furthest I got was looking into <a href="https://www.eindbazen/net/2012/05/php-cgi-advisory-cve-2012-1823">this webpage</a> detailing how the exploit works codewise.</p>
 
   <h3>Port 1099 - Java RMI Registry</h3>
 
   <p>The final exploits tutorial is <a href="https://www.youtube.com/watch?v=TZm1rmQ_1WY">here</a> for your reference. This payload was written in Ruby, which I unfortunately am unfamiliar with. <a href="https://github.cin.rapid7/metasploit-framework/blob/master/modules/explloits/multi/misc/java_rmi_server.rb">Here is the source code</a> for the exploit; the only thing that stood out to me was that this doesn't work against JMX ports since they do not support class loading so that could be a possibility. I did some research on JMX and how to set it up, but couldn't make much sense of it.</p>
 
+  <h3>Conclusion</h3>
   <p>This concludes the guide, sorry that it ended on a defeated note, it would sadden you if I told you how long I spent looking at those last two ports in particular. I hope that this was all useful information and is helpful to whoever reads it; please feel free to add on to it (especially for those last two that stumped me).</p>
 </body>
   <footer>
