@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
     <link rel="stylesheet" media="screen" href="../../css/screen.css" />
   </head>
-    <body>
+    <body class = "metasploit">
       <h1>Metasploitable Exploits and Hardening Guide</h1>
   <h2>Updated On: 07/05/2018 </h2>
   <h3>Introduction</h3>
@@ -18,7 +18,7 @@
   <h4>Zenmap Output</h4>
 
   <h3>Ports 23 and 25 - Telnet and SMTP </h3>
-  <p> With Telnet, we can start with something simple; power up Wireshark on your Kali machine. You need to pick a network that you want to capture the network traffic on so pick the one that the Metasploitable machine is running. With Wireshark running, telnet to the Metasploitable machine from your Kali root command line. <a href="https://www.youtube.com/watch?v=bZNc7sHt_BY"> I linked the YouTube tutorial</a> I used for your reference. </p>
+  <p> With Telnet, we can start with something simple; power up Wireshark on your Kali machine. You need to pick a network that you want to capture the network traffic on so pick the one that the Metasploitable machine is running. With Wireshark running, Telnet to the Metasploitable machine from your Kali root command line. <a href="https://www.youtube.com/watch?v=bZNc7sHt_BY"> I linked the YouTube tutorial</a> I used for your reference. </p>
   <p> The next exploit that uses Telnet involves port 25 for SMTP. <a href="https://pentestlab.blog/2012/11/20/smtp-user-enumeration/">I linked the tutorial I used for that here.</a></p>
   <p> There is a reason why no one uses Telnet anymore and the exploits above are just a few examples why - the best way to mitigate this is to disable Telnet on the Metasploitable machine (if it was a real server, just use SSH instead). This will be done by going into <b>/etc/inetd.conf</b> and commenting out the Telnet line, and then restarting the machine. </p>
 
@@ -74,7 +74,7 @@
 
   <h3>Port 2049 - NFS </h3>
 
-  <p> Note that for this exploit, you need to first install nfs-common with apt-get-install nfs-common on your Kali Linux machine. <a href="https://www.youtube.com/watch?v=ObmGG-RO9yg">Hereis the tutorial for the exploit.</a> There are many steps you can take to harden the NFS service, however for this particular machine I just added iptables commands to block the Kali machines IP from attempting to mount the Metasploitable machine. <a href="https://www.alibabacloud.com/help/faq-detail/51143.htm">The article I referenced is linked here.</a></p>
+  <p> Note that for this exploit, you need to first install nfs-common with apt-get-install nfs-common on your Kali Linux machine. <a href="https://www.youtube.com/watch?v=ObmGG-RO9yg">Here is the tutorial for the exploit.</a> There are many steps you can take to harden the NFS service, however for this particular machine I just added iptables commands to block the Kali machines IP from attempting to mount the Metasploitable machine. <a href="https://www.alibabacloud.com/help/faq-detail/51143.htm">The article I referenced is linked here.</a></p>
 
   <img src="screenshots/iptables.png" alt="IP Tables">
   <h4>IP tables commands</h4>
@@ -83,7 +83,7 @@
   <h4>Failed mount</h4>
 
   <p> Now when you try to mount the Metasploitable machine, the root terminal gets frozen and stuck. </p>
-
+  <br></br>
   <h3>Port 5432 - PostGresSQL</h3>
 
   <p> This is another easy Metasploit exploit that allows the attacker direct access into the meterpreter shell. </p>
@@ -102,19 +102,19 @@
   <h2>What Can't Be Patched</h2>
 
   <p>I also wanted to note the exploits that have no "patches"; I put this in quotes because there are other ways to mitigate these vulnerabilities.</p>
-
+  <br></br>
   <h3>Port 22 - SSH</h3>
 
   <p> Good old SSH, Telnet's updated replacement. The biggest issue (and an issue with the Metasploitable machine) is the use of passwords (or lack thereof). Obviously, this was set up for testing purposes, but if you are actually using SSH, it would be way smarter to utilize public/private key pairs for authentication instead of passwords. This is because if we have the victim's SSH login credentials, we can easily log into their machines. They key pairs make for a much more secure connection and <a href="https://www.youtube.com/watch?v=5Fcf-8LPvws">here is a YouTube tutorial</a> for how to set that up. </p>
-
+  <br></br>
   <h3>Port 3306 - MySQL</h3>
 
   <p> This can be exploited by using auxiliary modules on Metasploit to scan and find usernames and passwords. <a href="https://www.youtube.com/watch?v=OhpHun0NYyg">The YouTube tutorial here</a> outlines how to do so. This was another exploit that demonstrated how passwords are not a strong protection mechanism against attackers. <a href="https://dev.mysql.com/doc/mysql-security-excerpt/5.6/en/creating-rsa-files-using-openssl.html">I linked a tutorial on how to create RSA keys on MySQL here</a> as a mitigation technique. </p>
-
+  <br></br>
   <h3> Port 5900 - VNC</h3>
 
   <p>This also uses an auxiliary module exploit on Metasploit. <a href="https://www.youtube.com/watch?v=ZyFFIeeNrr0">Here is the YouTube tutorial</a> on how to do so. For this particular case, since the password was "password", it would be wise to change that to something stronger or even better, use public/private keys for this as well. <a href="https://ubuntuforums.org/showthread.php?t=383053">Instructions are linked here.</a></p>
-
+  <br></br>
   <h3> Port 6667 - UnrealIRCd</h3>
 
   <p>Hooray for another backdoor! <a href="https://www.youtube.com/watch?v=s-IQHbqv4KY">Here is the YouTube tutorial</a> I used to test this out. This one actually can't be patched from the Metasploitable machines side (as far as I know). I'm only saying this because after I read <a href="https://www.unrealircd.org/txt/unrealsecadvisory.20100612.txt">this statement released by Unreal,</a> I understood that there was nothing else I can do except the steps outlined in the screenshot below. </p>
@@ -125,21 +125,22 @@
   <h3>Port 8180 - Apache Tomcat</h3>
 
   <p> This is yet another auxiliary module exploit where the attacker can find the victim's login credentials. <a href="https://pentestlab.blog/2012/03/22/apache-tomcat-exploitation">Here</a> is the tutorial I used to do so. Similar to VNC, the user had weak credentials so the best mitigation would be to have stronger passwords or as I've reiterated multiple times througout this guide, use public/private key pairs instead. <a href="https://tomcat.apache.org/tomcat-9.0-doc/ssl-howto.html">Here is a tutorial</a> on how to do so on Apache Tomcat 9.0. </p>
+  <br></br>
   <h3>Port 2121 - vsftpd</h3>
   <p> This exploit also involves weak passwords (shocker, I know). <a href="https://bytesoverbombs.io/metasploitable-2-part-1-vsftpd-proftpd-983ea6994d5b">Details on the exploit are here.</a> After some research, I learned that FTP isn't considered secure anymore and that it would be beneficial to switch to SFTP; <a href="https://titanftp.com/2018/05/18/whats-the-difference-ftp-sftp-and-ftp-s/">details on that are here.</a></p>
-
+  <br></br>
   <h2>The Two Problem Children</h2>
 
   <p>I categorized these separately because these two were unique (and frustrating) to me due to the fact that I couldn't make heads or tails of how to patch this without waiting for the developers of the service to release a patch on their own. This knowledge from the dev side would be a strong addition to the guide, especially since I can't bring myself to look at PHP or Ruby code anymore.</p>
-
+  <br></br>
   <h3>Port 80 - Apache </h3>
 
-  <p>This vulnerab  ility is PHP based (hence my earlier comment). I would post an actual video of how to do this, but I imagine at this point you've figured out how to read through the exploits on rapid7 anyways. <a href="https://www.raipd7.com/db/modules/exploit/multi/http/php_cgi_arg_injection">Here's the rapid7 link</a> for the php injection exploit.The furthest I got was looking into <a href="https://www.eindbazen/net/2012/05/php-cgi-advisory-cve-2012-1823">this webpage</a> detailing how the exploit works codewise.</p>
-
+  <p>This vulnerability is PHP based (hence my earlier comment). I would post an actual video of how to do this, but I imagine at this point you've figured out how to read through the exploits on rapid7 anyways. <a href="https://www.raipd7.com/db/modules/exploit/multi/http/php_cgi_arg_injection">Here's the rapid7 link</a> for the php injection exploit.The furthest I got was looking into <a href="https://www.eindbazen/net/2012/05/php-cgi-advisory-cve-2012-1823">this webpage</a> detailing how the exploit works codewise.</p>
+  <br></br>
   <h3>Port 1099 - Java RMI Registry</h3>
 
   <p><a href="https://www.youtube.com/watch?v=TZm1rmQ_1WY">The final exploits tutorial is here</a> for your reference. This payload was written in Ruby, which I unfortunately am unfamiliar with. <a href="https://github.cin.rapid7/metasploit-framework/blob/master/modules/explloits/multi/misc/java_rmi_server.rb">Here is the source code</a> for the exploit; the only thing that stood out to me was that this doesn't work against JMX ports since they do not support class loading so that could be a possibility. I did some research on JMX and how to set it up, but couldn't make much sense of it.</p>
-
+  <br></br>
   <h3>Conclusion</h3>
   <p>This concludes the guide, sorry that it ended on a defeated note, it would sadden you if I told you how long I spent looking at those last two ports in particular. I hope that this was all useful information and is helpful to whoever reads it; please feel free to add on to it (especially for those last two that stumped me).</p>
 </body>

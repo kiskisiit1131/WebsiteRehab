@@ -23,16 +23,20 @@ html {
  h1 {
    font-size: 1.7925625em; /* 28.681px */
    line-height: 1.04598863em;  /* 30 / 28.681 =  1.04598863em */
+   padding-bottom: 0.1em;
  }
 
  h2 {
   font-size: 1.383em; /* 22.128px */
   line-height: 1.129790em; /* 25 / 22.128 = 1.129790em */
+  padding-bottom: inherit;
  }
 
  h3 {
    font-size: 1.296em; /* 20.739px */
    line-height: 1.10902em; /* 23 / 20.739 = 1.10902em */
+   padding-top: 0.1em;
+   padding-bottom: inherit;
  }
 
  h4, i {
@@ -199,4 +203,24 @@ a:hover {
     float: right;
     width: 48.3333333333%;
   }
+  /* ===== Metasploitable Page ===== */
+
+  .metasploit {
+    padding-left: 10em;
+    padding-right: 10em;
+  }
+
+  html {
+    line-height: 1.5em;
+  }
 }
+   @media screen and (min-width: 80em){
+     .metasploit {
+       padding-left: 18em;
+       padding-right: 18em;
+     }
+
+     html {
+       line-height: 1.5em;
+     }
+   }
