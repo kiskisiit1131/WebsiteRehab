@@ -81,7 +81,7 @@ a:link {
   text-decoration: none;
 }
 
-a:hover {
+a:hover, a:visited {
     color: #0C6E86;
 }
 

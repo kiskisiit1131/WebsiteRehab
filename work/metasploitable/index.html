@@ -119,7 +119,7 @@
 
   <p>Hooray for another backdoor! <a href="https://www.youtube.com/watch?v=s-IQHbqv4KY">Here is the YouTube tutorial</a> I used to test this out. This one actually can't be patched from the Metasploitable machines side (as far as I know). I'm only saying this because after I read <a href="https://www.unrealircd.org/txt/unrealsecadvisory.20100612.txt">this statement released by Unreal,</a> I understood that there was nothing else I can do except the steps outlined in the screenshot below. </p>
 
-  <img src="screenshots/unreal.png" alt="Unreal">
+  <img src="screenshots/unreal.PNG" alt="Unreal">
   <h4>Screenshot solution from Unreal</h4>
 
   <h3>Port 8180 - Apache Tomcat</h3>
@@ -135,11 +135,11 @@
   <br></br>
   <h3>Port 80 - Apache </h3>
 
-  <p>This vulnerability is PHP based (hence my earlier comment). I would post an actual video of how to do this, but I imagine at this point you've figured out how to read through the exploits on rapid7 anyways. <a href="https://www.raipd7.com/db/modules/exploit/multi/http/php_cgi_arg_injection">Here's the rapid7 link</a> for the php injection exploit.The furthest I got was looking into <a href="https://www.eindbazen/net/2012/05/php-cgi-advisory-cve-2012-1823">this webpage</a> detailing how the exploit works codewise.</p>
+  <p>This vulnerability is PHP based (hence my earlier comment). I would post an actual video of how to do this, but I imagine at this point you've figured out how to read through the exploits on rapid7 anyways. <a href="https://www.rapid7.com/db/modules/exploit/multi/http/php_cgi_arg_injection">Here's the rapid7 link</a> for the php injection exploit.The furthest I got was looking into <a href="http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/">this webpage</a> detailing how the exploit works codewise.</p>
   <br></br>
   <h3>Port 1099 - Java RMI Registry</h3>
 
-  <p><a href="https://www.youtube.com/watch?v=TZm1rmQ_1WY">The final exploits tutorial is here</a> for your reference. This payload was written in Ruby, which I unfortunately am unfamiliar with. <a href="https://github.cin.rapid7/metasploit-framework/blob/master/modules/explloits/multi/misc/java_rmi_server.rb">Here is the source code</a> for the exploit; the only thing that stood out to me was that this doesn't work against JMX ports since they do not support class loading so that could be a possibility. I did some research on JMX and how to set it up, but couldn't make much sense of it.</p>
+  <p><a href="https://www.youtube.com/watch?v=TZm1rmQ_1WY">The final exploits tutorial is here</a> for your reference. This payload was written in Ruby, which I unfortunately am unfamiliar with. <a href="https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/misc/java_rmi_server.rb">Here is the source code</a> for the exploit; the only thing that stood out to me was that this doesn't work against JMX ports since they do not support class loading so that could be a possibility. I did some research on JMX and how to set it up, but couldn't make much sense of it.</p>
   <br></br>
   <h3>Conclusion</h3>
   <p>This concludes the guide, sorry that it ended on a defeated note, it would sadden you if I told you how long I spent looking at those last two ports in particular. I hope that this was all useful information and is helpful to whoever reads it; please feel free to add on to it (especially for those last two that stumped me).</p>
