@@ -76,12 +76,12 @@ nav ul li {
   text-decoration: none;
 }
 
-a:link {
+a:link, a:visited {
   color: white;
   text-decoration: none;
 }
 
-a:hover, a:visited {
+a:hover {
     color: #0C6E86;
 }
 
