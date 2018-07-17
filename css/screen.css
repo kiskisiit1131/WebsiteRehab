@@ -29,7 +29,8 @@ html {
  h2 {
   font-size: 1.383em; /* 22.128px */
   line-height: 1.129790em; /* 25 / 22.128 = 1.129790em */
-  padding-bottom: inherit;
+  padding-bottom: 0.2em;
+
  }
 
  h3 {
@@ -52,8 +53,14 @@ html {
  }
 
  footer {
-  clear: both;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 30px;
+  width: 100%;
   padding: 1em;
+  text-align: center;
+  clear: both;
 }
 
 /* Navigation Bar Styling */
@@ -93,25 +100,42 @@ a:hover {
   padding-left: 0;
 }
 
-/* About page */
+/* Style All Pages Same Way  */
 
-.homeMain {
+.homeText, .contactText, .workText {
   text-align: center;
 }
 
-.rightHome {
+/* About page  */
+
+.homePic, .homeText, .workText {
   padding-left: 20%;
   padding-right: 20%;
 }
 
 /* Resume Page */
 
- .content li {
-  list-style-type: disc;
+.resumePage {
+background: no-repeat center/135% url("../pictures/resumeBG.jpg");
+background-attachment: fixed;
+overflow: hidden;
 }
 
- .exception li {
-  list-style-type: none;
+ .resumelinks {
+   font-size: 1.5em; /* 24px */
+   line-height: 4.5em; /* Purposely large to separate links */
+   text-align: center;
+   padding-top: 5em;
+
+}
+
+.resumelinks a:link, a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.resumelinks a:hover {
+    color: #7EEEFB;
 }
 
 /* Award Page */
@@ -144,14 +168,25 @@ a:hover {
 
 .socialmedia {
   display: inline-flex;
-  padding: 10;
-  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -50%);
   max-width: 25%;
 }
 
 .socialmedia a {
   padding: 5;
 }
+
+/* Metasploitable page  */
+
+.mFooter {
+  position: relative;
+  clear: both;
+  padding: 1em;
+}
+
 
  /* ===== LAYOUT STYLES ===== */
 
@@ -203,6 +238,15 @@ a:hover {
     float: right;
     width: 48.3333333333%;
   }
+
+  .socialmedia {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    max-width: 20%;
+  }
+
   /* ===== Metasploitable Page ===== */
 
   .metasploit {
@@ -220,7 +264,16 @@ a:hover {
        padding-right: 18em;
      }
 
+     .socialmedia {
+       position: absolute;
+       left: 50%;
+       top: 40%;
+       transform: translate(-50%, -50%);
+       max-width: 18%;
+     }
+
      html {
+       font-size: 1.5em; /* 24px */
        line-height: 1.5em;
      }
    }
