@@ -115,17 +115,13 @@ a:hover {
 
 /* Resume Page */
 
-.resumePage {
-background: no-repeat center/135% url("../pictures/resumeBG.jpg");
-background-attachment: fixed;
-overflow: hidden;
-}
-
  .resumelinks {
    font-size: 1.5em; /* 24px */
    line-height: 4.5em; /* Purposely large to separate links */
    text-align: center;
    padding-top: 5em;
+   padding-bottom: 5em;
+   background: center/100% url("../pictures/resumeBG.jpg");
 
 }
 
@@ -204,6 +200,10 @@ overflow: hidden;
   #copyright{
     text-align: center;
   }
+
+  .resumePage {
+  background-position: -10em 5em;
+  }
 }
 
   @media screen and (min-width: 37.5em) {
@@ -219,24 +219,6 @@ overflow: hidden;
    @media screen and (min-width: 50em){
   #align {
     text-align: center;
-  }
-
-  #photo, #left{
-    float: left;
-    width: 48.3333333333%;
-  }
-
-  #right, #exception {
-    float: right;
-    width: 48.3333333333%;
-  }
-  #img {
-    float: left;
-    width: 48.3333333333%;
-  }
-  #rightHome {
-    float: right;
-    width: 48.3333333333%;
   }
 
   .socialmedia {
