@@ -121,7 +121,7 @@ a:hover {
    text-align: center;
    padding-top: 5em;
    padding-bottom: 5em;
-   background: center/100% url("../pictures/resumeBG.jpg");
+   background: no-repeat center/100% url("../pictures/resumeBG.jpg");
 
 }
 
