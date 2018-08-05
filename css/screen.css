@@ -12,8 +12,8 @@ a,abbr,acronym,address,applet,article,aside,audio,big,blockquote,body,canvas,cap
 
 @font-face {
   font-family: 'Agency FB';
-  src: url(http://allfont.net/cache/fonts/agency-fb_0b9596562659a0772f5e24c22cae921b.woff) format('woff'), /* Modern Browsers */
-       url(http://allfont.net/cache/fonts/agency-fb_0b9596562659a0772f5e24c22cae921b.ttf) format('truetype') /* Mobile */
+  src: url('http://allfont.net/cache/fonts/agency-fb_0b9596562659a0772f5e24c22cae921b.woff') format('woff'), /* Modern Browsers */
+       url('http://allfont.net/cache/fonts/agency-fb_0b9596562659a0772f5e24c22cae921b.ttf') format('truetype') /* Mobile */
 }
 
 html {
