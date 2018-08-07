@@ -1,5 +1,3 @@
-/* Using PDF Object to display my resume */
-
 /*global ActiveXObject, window, console, define, module, jQuery */
 //jshint unused:false, strict: false
 

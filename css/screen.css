@@ -281,8 +281,8 @@ a:hover {
  /* ===== Form Styling ===== */
 
  form {
-   padding: 0 2em;
-   background: no-repeat center/175% url("../contact/pictures/binary.PNG");
+
+   background: no-repeat center/175% url("../contact/pictures/binary.png");
    margin: 1em 0;
    text-align: center;
  }
@@ -294,20 +294,25 @@ a:hover {
 
  input {
    background: black;
+   color: inherit;
+   font-family: inherit;
 
  }
 
  input[name="name"] {
    margin: 1em 0;
+   width: 195px;
  }
 
  input[name="mail"] {
    margin-bottom: 0.5em;
+   width: 195px;
  }
 
  input[name="message"] {
-   padding: 2em;
+   width: 200px;
    margin: 0.5em 0;
+   padding: 0 0 100px 0;
  }
 
  input[type="submit"] {
@@ -317,6 +322,12 @@ a:hover {
    margin-left: auto;
    margin-right: auto;
    text-align: center;
+ }
+
+ #success_message, #error_message {
+    style=width:100%;
+    height:100%;
+    display: none;
  }
 
  /* ===== MODULAR STYLES ===== */
@@ -385,7 +396,7 @@ a:hover {
 }
 
 .socialmedia a {
-  padding: 10;
+  padding: 1em;
 }
 
 /* Metasploitable page  */

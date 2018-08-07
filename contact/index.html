@@ -4,6 +4,7 @@
   <title>Contact</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no" />
   <link rel="stylesheet" media="screen" href="../css/screen.css" />
+  <script src="../js/submitform.js"></script>
   <meta charset="utf-8" />
   </head>
         <body>
@@ -29,11 +30,11 @@
               <ol>
                 <li>
                   <label for "name">Name</label>
-                  <input type="text" name="name">
+                  <input type="text" name="name" required id="name" class="form-control" >
                 </li>
                 <li>
                   <label for "mail">E-mail</label>
-                  <input type="text" name="mail">
+                  <input type="text" name="mail" required id="email" class="form-control">
                 </li>
                 <li>
                   <label for "message">Note</label>
@@ -44,6 +45,15 @@
                 </li>
               </ol>
             </form>
+          </section>
+
+          <section>
+            <div id="success_message">
+              <h3>Your message was sent successfully.</h3>
+            </div>
+            <div id="error_message">
+              <h3>Sorry, there was an error sending your message; please try emailing kiskisakvile@gmail.com on whatever mail client you usually use.</h3>
+            </div>
           </section>
 
             <section class="socialmedia">
