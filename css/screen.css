@@ -278,58 +278,6 @@ a:hover {
   flex-wrap: nowrap;
 }
 
- /* ===== Form Styling ===== */
-
- form {
-
-   background: no-repeat center/175% url("../contact/pictures/binary.png");
-   margin: 1em 0;
-   text-align: center;
- }
-
- label {
-   /* this styles the text */
-
- }
-
- input {
-   background: black;
-   color: inherit;
-   font-family: inherit;
-
- }
-
- input[name="name"] {
-   margin: 1em 0;
-   width: 195px;
- }
-
- input[name="mail"] {
-   margin-bottom: 0.5em;
-   width: 195px;
- }
-
- input[name="message"] {
-   width: 200px;
-   margin: 0.5em 0;
-   padding: 0 0 100px 0;
- }
-
- input[type="submit"] {
-   color: white;
-   font-family: inherit;
-   background-color: grey;
-   margin-left: auto;
-   margin-right: auto;
-   text-align: center;
- }
-
- #success_message, #error_message {
-    style=width:100%;
-    height:100%;
-    display: none;
- }
-
  /* ===== MODULAR STYLES ===== */
 
 /* Navigation Bar */
@@ -439,10 +387,6 @@ a:hover {
     text-align: center;
   }
 
-   input {
-    text-align: left;
-  }
-
 }
 
    @media screen and (min-width: 50em){
@@ -469,10 +413,6 @@ a:hover {
     line-height: 1.5em;
   }
 
-  form {
-    padding-right: 40%;
-    padding-left: 10%;
-  }
 }
 
   /* ===== State Styles ===== */
@@ -488,14 +428,6 @@ a:hover {
        text-align: center;
        clear: both;
      }
-
-     form {
-       padding-right: 40%;
-       padding-left: 15%;
-     }
-
-
-
    }
 
    @media screen and (min-width: 80em){
@@ -517,19 +449,10 @@ a:hover {
        line-height: 1.5em;
      }
 
-     form {
-       padding-right: 40%;
-       padding-left: 15%;
-     }
-
    }
    @media screen and (min-width: 114em){
            html {
   font-size: 1.5em; /* 24px */
      }
 
-     form {
-       padding-right: 50%;
-       padding-left: 25%;
-     }
 }
