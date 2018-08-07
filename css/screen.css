@@ -355,6 +355,10 @@ a:hover {
   padding: 1em;
 }
 
+.wFooter {
+  margin-left: -1em;
+}
+
  /* ===== LAYOUT STYLES ===== */
 
  img, photo {
