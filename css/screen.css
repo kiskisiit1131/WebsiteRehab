@@ -349,13 +349,13 @@ a:hover {
 
 /* Metasploitable page  */
 
-.mFooter, .wFooter {
+.mFooter, .wFooter, .aFooter {
   position: relative;
   clear: both;
   padding: 1em;
 }
 
-.wFooter {
+.wFooter, .aFooter {
   margin-left: -1em;
 }
 
@@ -422,7 +422,7 @@ a:hover {
   /* ===== State Styles ===== */
 
    @media screen and (min-width: 48em){
-     .wFooter {
+     .wFooter, .aFooter {
        position: fixed;
        left: 0px;
        bottom: 0px;
