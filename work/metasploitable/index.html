@@ -23,7 +23,7 @@
   <p>As I began working with the Metasploitable virtual machine and testing out different exploits, I grew curious on how to protect against them. Unfortunately, I have not seen a guide like this anywhere on the Internet, which is why I decided to create one. <a href="https://github.com/kiskisiit1131/WebsiteRehab/blob/master/work/metasploitable/index.html">The source code for this site is available on GitHub here</a> so feel free to clone the repository and add on your own findings as well.</p>
   <p> I'm structuring the guide so you see the exploit first, and then how to patch it afterwards; I also have screenshots included for your reference. Let's begin!</p>
   <h3>Network Scan</h3>
-  <p> Depending on your experience or comfort with Kali Linux, you can start with either Zenmap or use an nmap command directly on the command line to scan the Metasploitable machine for any open ports. I personally prefer Zenmap because of the GUI. After a port scan of the Metasploitables IP, the first glaring open port is 23 for Telnet. There are a couple exploits utilizing Telnet so I will outline how to do those below before disabling Telnet on the Metasploitable machine. </p>
+  <p> Depending on your experience or comfort with Kali Linux, you can start with either Zenmap or use an nmap command directly on the command line to scan the Metasploitable machine for any open ports. I started off with Zenmap because of the GUI, but nmap is more robust and I would recommend getting into the habit of using that instead. After a port scan of the Metasploitables IP, the first glaring open port is 23 for Telnet. There are a couple exploits utilizing Telnet so I will outline how to do those below before disabling Telnet on the Metasploitable machine. </p>
   <img src="screenshots/zenmapscan.png" alt="Zenmap Scan">
   <h4>Zenmap Output</h4>
 
@@ -67,10 +67,10 @@
 
   <h3>Port 1524 - Ingreslock Backdoor</h3>
 
-  <p> Port 1524 has the xinetd super server daemon running on it. This exploit is as simple as typing in nc, the ip address of the target machine, and the port number to get root access of the machine. </p>
+  <p> Port 1524 has the xinetd super server daemon running on it. This exploit is as simple as using a netcat command to get root access of the machine. </p>
 
-  <img src="screenshots/ncexploit.png" alt="NC Exploit">
-  <h4>NC exploit</h4>
+  <img src="screenshots/ncexploit.png" alt="Netcat Exploit">
+  <h4>Netcat exploit</h4>
 
   <p> This works due to the Ingreslock backdoor placed on the machine. If you go to <b>/etc/inetd.conf</b>, you can see the last line has this. </p>
 
