@@ -365,7 +365,7 @@ a:hover {
 
  /* ===== LAYOUT STYLES ===== */
 
- img, photo {
+ img, photo, iframe {
   display: block;
   max-width: 100%;
   margin-left: auto;
@@ -425,7 +425,7 @@ a:hover {
 
   /* ===== State Styles ===== */
 
-  
+
    @media screen and (max-width: 46.125em){
      .aFooter {
        position: relative;
