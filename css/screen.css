@@ -412,7 +412,7 @@ a:hover {
 
   /* ===== Metasploitable Page ===== */
 
-  .metasploit {
+  .metasploit, .bpt1, .bulldog {
     padding-left: 10em;
     padding-right: 10em;
   }
@@ -449,7 +449,7 @@ a:hover {
    }
 
    @media screen and (min-width: 80em){
-     .metasploit {
+     .metasploit, .bpt1, .bulldog {
        padding-left: 18em;
        padding-right: 18em;
      }
