@@ -303,6 +303,10 @@ a:hover {
   padding-right: 20%;
 }
 
+.homePic {
+  font-style: italic;
+}
+
 /* Resume Page */
 
  .resumelinks {
