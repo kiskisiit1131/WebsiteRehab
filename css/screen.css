@@ -247,6 +247,27 @@ html {
     clear: both;
   }
 
+  pre {
+    background: #272822;
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+    border-radius: .3em;
+  }
+
+  .bash {
+    color: #f8f8f2;
+    text-shadow: 0 1px rgba(0,0,0,.3);
+    font-family: Consolas,Monaco,andale mono,ubuntu mono,monospace;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  }
+
 /* Navigation Bar Styling */
 
 nav ul {
