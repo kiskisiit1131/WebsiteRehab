@@ -238,8 +238,8 @@ html {
 
    footer {
     position: fixed;
-    left: 0px;
-    bottom: 0px;
+  /*  left: 0px;
+    bottom: 0px; */
     height: 30px;
     width: 100%;
     padding: 1em;
@@ -298,9 +298,14 @@ a:hover {
 
 /* About page  */
 
-.homePic, .homeText, .workText {
+ .workText {
   padding-left: 20%;
   padding-right: 20%;
+}
+
+.homeText {
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .homePic {
@@ -316,7 +321,6 @@ a:hover {
    padding-top: 5em;
    padding-bottom: 5em;
    background: no-repeat center/100% url("../pictures/resumeBG.jpg");
-
 }
 
 .resumelinks a:link, a:visited {
@@ -335,7 +339,7 @@ a:hover {
   text-align: center;
 }
 
-.center{
+.center {
   text-align: center;
 }
 
@@ -384,14 +388,10 @@ a:hover {
   #copyright{
     text-align: center;
   }
-
-  .resumePage {
-  background-position: -10em 5em;
-  }
 }
 
   @media screen and (min-width: 37.5em) {
-  #align {
+  #align, .resumePage {
     padding-left: 10%;
     padding-right: 10%;
   }
@@ -399,6 +399,9 @@ a:hover {
     text-align: center;
   }
 
+  .resumelinks {
+    max-height: 230px;
+  }
 }
 
    @media screen and (min-width: 50em){
@@ -436,11 +439,16 @@ a:hover {
        clear: both;
        padding: 1em;
      }
+
+     .rFooter {
+       position: relative;
+       margin-top: -7em;
+     }
    }
 
 
    @media screen and (min-width: 48em){
-     .wFooter {
+     .wFooter, .rFooter {
        position: fixed;
        left: 0px;
        bottom: 0px;
@@ -450,10 +458,16 @@ a:hover {
        text-align: center;
        clear: both;
      }
+
+     .homePic {
+       padding-left: 20%;
+       padding-right: 20%;
+     }
+
    }
 
    @media screen and (min-width: 80em){
-     .metasploit, .bpt1, .bulldog {
+     .bpt1, .bulldog {
        padding-left: 18em;
        padding-right: 18em;
      }
@@ -473,7 +487,7 @@ a:hover {
 
    }
    @media screen and (min-width: 114em){
-           html {
+     html {
   font-size: 1.5em; /* 24px */
      }
 
