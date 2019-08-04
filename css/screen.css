@@ -237,11 +237,11 @@ html {
    }
 
    footer {
-    position: fixed;
-  /*  left: 0px;
-    bottom: 0px; */
+  /*  position: fixed;
+    left: 0px;
+    bottom: 0px;
     height: 30px;
-    width: 100%;
+    width: 100%; */
     padding: 1em;
     text-align: center;
     clear: both;
@@ -249,16 +249,17 @@ html {
 
   pre {
     background: #272822;
-    padding: 1em;
-    margin: .5em 0;
+    padding: 0.7em;
+    /*margin: .5em 0; */
     overflow: auto;
-    border-radius: .3em;
+    border-radius: .5em;
   }
 
   .bash {
     color: #f8f8f2;
     text-shadow: 0 1px rgba(0,0,0,.3);
-    font-family: Consolas,Monaco,andale mono,ubuntu mono,monospace;
+    font-family: Consolas, Monaco, andale mono, ubuntu mono, monospace;
+    font-size: 10px;
     direction: ltr;
     text-align: left;
     white-space: pre;
@@ -266,6 +267,7 @@ html {
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
+    padding-right: 1em;
   }
 
 /* Navigation Bar Styling */
@@ -313,7 +315,7 @@ a:hover {
 
 /* Style All Pages Same Way  */
 
-.homeText, .contactText, .workText {
+.homeText, .contactText, .workText, .pentestText {
   text-align: center;
 }
 
@@ -355,13 +357,16 @@ a:hover {
 
 /* Work Page */
 
-
 .title h1{
   text-align: center;
 }
 
 .center {
   text-align: center;
+}
+
+.pentestText h3 {
+  line-height: 2.5em;
 }
 
 /* Contact Page */
@@ -382,13 +387,13 @@ a:hover {
 
 /* Metasploitable page  */
 
-.mFooter, .wFooter, .aFooter {
+.mFooter, .wFooter {
   position: relative;
   clear: both;
   padding: 1em;
 }
 
-.wFooter, .aFooter {
+.wFooter {
   margin-left: -1em;
 }
 
@@ -405,12 +410,6 @@ a:hover {
 
   /* ===== STATE STYLES ===== */
 
-  @media screen and (min-width: 20em) {
-  #copyright{
-    text-align: center;
-  }
-}
-
   @media screen and (min-width: 37.5em) {
   #align, .resumePage {
     padding-left: 10%;
@@ -422,6 +421,10 @@ a:hover {
 
   .resumelinks {
     max-height: 230px;
+  }
+
+  .bash {
+    font-size: 12px;
   }
 }
 
@@ -440,7 +443,7 @@ a:hover {
 
   /* ===== Metasploitable Page ===== */
 
-  .metasploit, .bpt1, .bulldog {
+  .metasploit, .bpt1, .bulldog, .access {
     padding-left: 10em;
     padding-right: 10em;
   }
@@ -455,12 +458,6 @@ a:hover {
 
 
    @media screen and (max-width: 46.125em){
-     .aFooter {
-       position: relative;
-       clear: both;
-       padding: 1em;
-     }
-
      .rFooter {
        position: relative;
        margin-top: -7em;
@@ -488,9 +485,16 @@ a:hover {
    }
 
    @media screen and (min-width: 80em){
-     .bpt1, .bulldog {
-       padding-left: 18em;
-       padding-right: 18em;
+     .access h1,h2,p:first-of-type {
+       text-align: center;
+     }
+
+     .bulldog, .bpt1, .metasploit h1:first-of-type {
+       text-align: center;
+      }
+
+     .bash {
+       font-size: 14px;
      }
 
      .socialmedia {
@@ -504,6 +508,15 @@ a:hover {
      html {
        font-size: 1.5em; /* 24px */
        line-height: 1.5em;
+     }
+
+     .hFooter, .cFooter {
+       position: absolute;
+       bottom: 0;
+       margin-left: auto;
+       margin-right: auto;
+       left: 0;
+       right: 0;
      }
 
    }
