@@ -321,12 +321,7 @@ a:hover {
 
 /* About page  */
 
- .workText {
-  padding-left: 20%;
-  padding-right: 20%;
-}
-
-.homeText {
+.homeText, .workText {
   padding-left: 10%;
   padding-right: 10%;
 }
@@ -357,6 +352,10 @@ a:hover {
 
 /* Work Page */
 
+.workText h3 {
+  margin-bottom: 0.8em;
+}
+
 .title h1{
   text-align: center;
 }
@@ -366,7 +365,7 @@ a:hover {
 }
 
 .pentestText h3 {
-  line-height: 2.5em;
+  line-height: 2.3em;
 }
 
 /* Contact Page */
@@ -395,6 +394,12 @@ a:hover {
 
 .wFooter {
   margin-left: -1em;
+}
+
+/* Scripting Page */
+
+.scripting h3,p:last-of-type {
+  text-align: center;
 }
 
  /* ===== LAYOUT STYLES ===== */
@@ -443,9 +448,14 @@ a:hover {
 
   /* ===== Metasploitable Page ===== */
 
-  .metasploit, .bpt1, .bulldog, .access {
+  .metasploit, .bpt1, .bulldog, .access, .scripting {
     padding-left: 10em;
     padding-right: 10em;
+  }
+
+  .scripting li {
+    margin-left: 5em;
+    margin-right: 5em;
   }
 
   html {
