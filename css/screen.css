@@ -398,7 +398,7 @@ a:hover {
 
 /* Scripting Page */
 
-.scripting h3,p:last-of-type {
+.scripting h2,h3,p:last-of-type {
   text-align: center;
 }
 
