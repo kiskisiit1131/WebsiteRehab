@@ -398,10 +398,27 @@ a:hover {
 
 /* Scripting Page */
 
-.scripting h2,h3,p:last-of-type {
+.scripting, .publications h2,h3,p:last-of-type {
   text-align: center;
 }
 
+.scripting li {
+  margin-left: 5em;
+  margin-right: 5em;
+}
+
+
+/* Publications Page */
+
+.publications h1 {
+  text-align: center;
+  padding-bottom: 0.5em;
+}
+
+.publications h3 {
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+}
  /* ===== LAYOUT STYLES ===== */
 
  img, photo, iframe {
@@ -448,15 +465,11 @@ a:hover {
 
   /* ===== Metasploitable Page ===== */
 
-  .metasploit, .bpt1, .bulldog, .access, .scripting {
+  .metasploit, .bpt1, .bulldog, .access, .scripting, .publications {
     padding-left: 10em;
     padding-right: 10em;
   }
 
-  .scripting li {
-    margin-left: 5em;
-    margin-right: 5em;
-  }
 
   html {
     line-height: 1.5em;
