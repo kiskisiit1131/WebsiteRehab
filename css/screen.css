@@ -384,6 +384,16 @@ a:hover {
   padding: 1em;
 }
 
+/* StormCTF Page  */
+
+.storm img {
+  max-width: 60%;
+}
+
+#command_screenshot {
+  max-width: 90%;
+}
+
 /* Metasploitable page  */
 
 .mFooter, .wFooter {
@@ -465,9 +475,13 @@ a:hover {
 
   /* ===== Metasploitable Page ===== */
 
-  .metasploit, .bpt1, .bulldog, .access, .scripting, .publications {
+  .metasploit, .bpt1, .bulldog, .access, .scripting, .publications, .storm {
     padding-left: 10em;
     padding-right: 10em;
+  }
+
+  .storm {
+    text-align: center;
   }
 
 
@@ -528,7 +542,7 @@ a:hover {
        max-width: 18%;
      }
 
-     html {
+      html {
        font-size: 1.5em; /* 24px */
        line-height: 1.5em;
      }
@@ -543,9 +557,15 @@ a:hover {
      }
 
    }
+
    @media screen and (min-width: 114em){
-     html {
+     .metasploit, .bpt1, .bulldog, .access, .scripting, .publications, .storm {
   font-size: 1.5em; /* 24px */
      }
+
+     .metasploit h4, .access h4, .bpt1 h4 {
+       font-size: 1em;
+     }
+   }
 
 }
